@@ -1,0 +1,154 @@
+{
+  "ServiceResponse": {
+    "servicename": "TopRecipes",
+    "querystring": "SHOW1693",
+    "AssetUsage": {
+      "RecipeList": {
+        "Recipe": [
+          {
+            "AssetId": "RECIPE594634",
+            "RecipeNum": "1",
+            "RecipeTitle": "Don Pepe's Barbacoa",
+            "RecipeUrl": "/recipes/chuck-hughes/don-pepes-barbacoa-recipe/index.html",
+            "TalentName": "Recipe courtesy Chuck's Week Off: Mexico",
+            "TalentUrl": "/chuck-hughes/index.html",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/garbanzo/index.html",
+                  "-DisplayName": "Garbanzo "
+                },
+                {
+                  "-Link": "/topics/lamb/index.html",
+                  "-DisplayName": "Lamb "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/mexican/index.html",
+                "-DisplayName": "Mexican "
+              }
+            },
+            "TotalTime": "14 hrs 30 mins",
+            "DifficultyLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE594635",
+            "RecipeNum": "2",
+            "RecipeTitle": "Rosalia Sr.'s Pollo Pipian",
+            "RecipeUrl": "/recipes/chuck-hughes/rosalia-srs-pollo-pipian-recipe/index.html",
+            "TalentName": "Recipe courtesy Chuck's Week Off: Mexico",
+            "TalentUrl": "/chuck-hughes/index.html",
+            "IngredientList": {
+              "Name": {
+                "-Link": "/topics/chicken/index.html",
+                "-DisplayName": "Chicken "
+              }
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/mexican/index.html",
+                "-DisplayName": "Mexican "
+              }
+            },
+            "TotalTime": "1 hr 45 mins",
+            "DifficultyLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE585882",
+            "RecipeNum": "3",
+            "RecipeTitle": "Sanjuana's Pozole (Rich Corn and Pork Soup)",
+            "RecipeUrl": "/recipes/chuck-hughes/sanjuanas-pozole-rich-corn-and-pork-soup-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/11/07/CCCWO103_Sanjuanas-Posole-Rich-Corn-and-Pork-Soup_s4x3_sm.jpg",
+            "TalentName": "Recipe courtesy Chuck's Week Off: Mexico",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/corn/index.html",
+                  "-DisplayName": "Corn "
+                },
+                {
+                  "-Link": "/topics/pork/index.html",
+                  "-DisplayName": "Pork "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/mexican/index.html",
+                "-DisplayName": "Mexican "
+              }
+            },
+            "TotalTime": "3 hrs",
+            "DifficultyLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE583503",
+            "RecipeNum": "4",
+            "RecipeTitle": "Pedro's Tuna Sashimi",
+            "RecipeUrl": "/recipes/pedros-tuna-sashimi-recipe/index.html",
+            "TalentName": "Recipe courtesy Chuck's Week Off: Mexico",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/jalapeno/index.html",
+                  "-DisplayName": "Jalapeno "
+                },
+                {
+                  "-Link": "/topics/avocado/index.html",
+                  "-DisplayName": "Avocado "
+                },
+                {
+                  "-Link": "/topics/tuna/index.html",
+                  "-DisplayName": "Tuna "
+                },
+                {
+                  "-Link": "/topics/lime/index.html",
+                  "-DisplayName": "Lime "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/mexican/index.html",
+                "-DisplayName": "Mexican "
+              }
+            },
+            "DifficultyLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE596220",
+            "RecipeNum": "5",
+            "RecipeTitle": "Lupita's Tlayudas",
+            "RecipeUrl": "/recipes/chuck-hughes/lupitas-tlayudas-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/12/07/CCCWO106_Lupitas-Tlayudas_s4x3_sm.jpg",
+            "TalentName": "Recipe courtesy Chuck's Week Off: Mexico",
+            "TalentUrl": "/chuck-hughes/index.html",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/cheese/index.html",
+                  "-DisplayName": "Cheese "
+                },
+                {
+                  "-Link": "/topics/pork/index.html",
+                  "-DisplayName": "Pork "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/mexican/index.html",
+                "-DisplayName": "Mexican "
+              }
+            },
+            "TotalTime": "40 mins",
+            "DifficultyLevel": "Easy"
+          }
+        ]
+      }
+    },
+    "TotalRecipeCount": "26"
+  }
+}

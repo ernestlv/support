@@ -1,0 +1,2952 @@
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" version="2.1">
+    <tlib-version>5.4.0-SNAPSHOT</tlib-version>
+    <short-name>sni</short-name>
+    <uri>http://wcm.scrippsnetworks.com/pilot/sni-wcm-taglib</uri>
+    <description>Taglib providing custom tags and functions for sni-wcm.</description>
+
+    <tag>
+        <name>tag</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.SniTag</tag-class>
+        <description>
+            This is a pass-through tag that allows you to dynamically create tags with any name. Can have
+            a class and id attribute.
+        </description>
+        <example>
+            &lt;!--  this will write out &lt;aside class="someclass" id="someid"/&gt;  --&gt;
+            &lt;sni:tag tagName="aside" cssClass="someclass" id="someid" /&gt;
+        </example>
+        <attribute>
+            <name>tagName</name>
+            <required>true</required>
+            <description>This will be the name of the tag</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>cssClass</name>
+            <rtexprvalue>true</rtexprvalue>
+            <description>CSS Class string you wish applied to your tag</description>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <description>ID you wish to apply to tag</description>
+            <required>false</required>
+        </attribute>
+    </tag>
+	<tag>
+        <name>img</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.SniImgTag</tag-class>
+        <body-content>empty</body-content>
+        <description>
+			Draws img tag for the dynamic resizing servlet. This tag can be given a path relative to the current resource,
+			or a path into the DAM (probably extracted as a property of a resource somewhere).
+		</description>
+    	<example>
+    	    &lt;!--  using resourcePath --&gt;
+    	    &lt;sni:img resourcePath="relative/path/to/image" rendition="sni10col" imgClass="foo" /&gt;
+
+    	    &lt;!--  using damPath --&gt;
+    	    &lt;sni:img damPath="${properties['sni:image']}" rendition="sni10col" imgClass="foo" /&gt;
+    	</example>
+        <attribute>
+            <name>resourcePath</name>
+            <required>false</required>
+            <description>relative path to image component resource to render an img tag from</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>damPath</name>
+            <required>false</required>
+            <description>path to image asset in the DAM</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+		<attribute>
+			<name>lazy</name>
+			<required>false</required>
+			<description>boolean, defaulting to false, indicating whether or to use a src attribute (false) or data-src (true)</description>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>lazyMode</name>
+			<required>false</required>
+			<description>string, type of lazy-loading to employ (e.g. none, royalanchor, royaldiv)</description>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+        <attribute>
+            <name>rendition</name>
+            <required>false</required>
+            <description>value from the RenditionInfo enum</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>aspect</name>
+            <required>false</required>
+            <description>value from the ImageAspect enum</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgClass</name>
+            <required>false</required>
+            <description>class to put on img tag</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgAlt</name>
+            <required>false</required>
+            <description>value for the alt attribute of the image</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgTitle</name>
+            <required>false</required>
+            <description>value for the title attribute of the image, defaults to imgAlt value</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>htmlHeight</name>
+            <required>false</required>
+            <description>value for the height attribute of the image, should only use if browser-scaling</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>htmlWidth</name>
+            <required>false</required>
+            <description>value for the width attribute of the image, should only ues if browser-scaling</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>itemProp</name>
+            <required>false</required>
+            <description>itemprop, used in schema.org metadata</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+		<attribute>
+			<name>defaultImage</name>
+			<required>false</required>
+			<description>A fallback image, if the provided image can not be resolved.</description>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+    </tag>
+
+	<tag>
+		<name>externalizeURL</name>
+		<description>Outputs an externalized URL</description>
+		<tag-class>com.scrippsnetworks.wcm.taglib.ExternalizeURLTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>The path to externalize</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+
+    <tag>
+    	<name>safeSlingInclude</name>
+		<description>
+			Modified version of sling:include which swallows ResourceNotFound exceptions
+			and can disable WCMMode.
+		</description>
+    	<tag-class>com.scrippsnetworks.wcm.taglib.SafeSlingIncludeTag</tag-class>
+    	<body-content>empty</body-content>
+	    <attribute>
+            <description>
+                Whether to flush the output before including the target
+            </description>
+            <name>flush</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                The resource object to include in the current request
+                processing. Either resource or path must be specified. If
+                both are specified,  the resource takes precedences.
+            </description>
+            <name>resource</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>org.apache.sling.api.resource.Resource</type>
+        </attribute>
+        <attribute>
+            <description>
+                The path to the resource object to include in the current
+                request processing. If this path is relative it is
+                appended to the path of the current resource whose
+                script is including the given resource. Either resource
+                or path must be specified. If both are specified, the
+                resource takes precedences.
+            </description>
+            <name>path</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                The resource type of a resource to include. If the resource
+                to be included is specified with the path attribute,
+                which cannot be resolved to a resource, the tag may
+                create a synthetic resource object out of the path and
+                this resource type. If the resource type is set the path
+                must be the exact path to a resource object. That is,
+                adding parameters, selectors and extensions to the path
+                is not supported if the resource type is set.
+            </description>
+            <name>resourceType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, replace selectors by the value
+                provided by this option.
+            </description>
+            <name>replaceSelectors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, add the value provided by this option to the selectors.
+            </description>
+            <name>addSelectors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                When dispatching, replace the suffix by the value
+                provided by this option.
+            </description>
+            <name>replaceSuffix</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+				Boolean indicating whether to set WCMMode.DISABLED or not. (Defaults to true.)
+            </description>
+            <name>disableWcmMode</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+				Boolean indicating whether to force same context or not. (Defaults to false.)
+				If this is set to true, the decorationTagName and cssClassNames
+				attributes are ignored.
+            </description>
+            <name>forceSameContext</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+				Decoration tag name to set (Uses IncludeOptions)
+            </description>
+            <name>decorationTagName</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+				CSS class names to apply to decoration tag. (Uses IncludeOptions)
+            </description>
+            <name>cssClassNames</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+  	</tag>
+
+    <tag>
+        <name>rightRail</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.RightRailTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>sniPage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.scrippsnetworks.wcm.page.SniPage</type>
+        </attribute>
+        <attribute>
+            <description>
+				Boolean indicating whether to set WCMMode.DISABLED or not. (Defaults to true.)
+            </description>
+            <name>disableWcmMode</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+	<tag>
+        <name>globalHeader</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.GlobalHeaderTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>sniPage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.scrippsnetworks.wcm.page.SniPage</type>
+        </attribute>
+		<attribute>
+			<name>validVarName</name>
+			<description>The variable name to write back into the page context telling the validity of the global header. In the case it's invalid, the static placeholder will be used.</description>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+        <attribute>
+            <description>
+				Boolean indicating whether to set WCMMode.DISABLED or not. (Defaults to true.)
+            </description>
+            <name>disableWcmMode</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                Boolean indicating whether to set default header as mobile or not. (Defaults to false.)
+            </description>
+            <name>isMobile</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>footer</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.FooterTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>sniPage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.scrippsnetworks.wcm.page.SniPage</type>
+        </attribute>
+        <attribute>
+            <name>validVarName</name>
+            <description>The variable name to write back into the page context telling the validity of the footer. In the case it's invalid, the static placeholder will be used.</description>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Boolean indicating whether to set WCMMode.DISABLED or not. (Defaults to true.)
+            </description>
+            <name>disableWcmMode</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                Boolean indicating whether to set default footer as mobile or not. (Defaults to false.)
+            </description>
+            <name>isMobile</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>hubNavigation</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.HubNavigationTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>sniPage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.scrippsnetworks.wcm.page.SniPage</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>openGraph</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.OpenGraphTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>openGraph</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.scrippsnetworks.wcm.opengraph.OpenGraph</type>
+        </attribute>
+    </tag>
+
+     <tag>
+        <name>breadcrumb</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.BreadcrumbTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>breadcrumb</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.scrippsnetworks.wcm.breadcrumb.Breadcrumb</type>
+        </attribute>
+    </tag>
+
+    <tag>
+    	<name>action</name>
+    	<tag-class>com.scrippsnetworks.wcm.taglib.ActionTag</tag-class>
+    	<body-content>scriptless</body-content>
+    	<attribute>
+      		<name>bean</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+      		<name>id</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+  	</tag>
+
+    <tag>
+    	<name>componentBean</name>
+    	<tag-class>com.scrippsnetworks.wcm.taglib.ComponentBeanTag</tag-class>
+    	<body-content>scriptless</body-content>
+    	<attribute>
+      		<name>bean</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+      		<name>id</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+			<name>errorId</name>
+      		<required>false</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+			<name>throwErrors</name>
+      		<required>false</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>boolean</type>
+    	</attribute>
+  	</tag>
+
+    <tag>
+    	<name>searchComponentBean</name>
+    	<tag-class>com.scrippsnetworks.wcm.taglib.SearchComponentBeanTag</tag-class>
+    	<body-content>scriptless</body-content>
+    	<attribute>
+      		<name>bean</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+      		<name>id</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+			<name>serviceName</name>
+      		<required>true</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+			<name>errorId</name>
+      		<required>false</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>java.lang.String</type>
+    	</attribute>
+    	<attribute>
+			<name>throwErrors</name>
+      		<required>false</required>
+      		<rtexprvalue>true</rtexprvalue>
+      		<type>boolean</type>
+    	</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
+  	</tag>
+
+    <tag>
+        <name>image</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.ImageTag</tag-class>
+        <body-content>empty</body-content>
+        <description>
+        Encapsulates image logic into a single tag. Using the provided resource, which is assumed to have the
+        same attributes as resources created by the smartimage widget, an img tag is emitted. If a renditionPrefix is
+        supplied, a rendition matching the prefix is searched for and if found the src attribute of the image tag will point
+        to that rendition directly in the dam. By default the img tag will be linked with an anchor tag if the resource has a
+        linkURL property set, but this can be defeated if you have special requirements. Css classes can be supplied for both
+        the anchor and the img tags, and for the anchor's title attribute and the img tag's alt attribute (which is otherwise
+        set based on the resource properties as usual.)
+
+        The resource property does dual duty (matching the behavior of the CQ Image class constructor). If you have the image node resource
+        in hand, pass it in the resource attribute. If the image resource is a child of the resource given in JSP context, pass that resource
+        and a relative path to the resource in relativeResourceName. This is the preferred way because if the image does not exist the CQ Image
+        code will create a NonExistingResource and use that to render the proper placeholder for editing. Bottom line: if your image is one of several
+        optional images, go ahead and iterate over them and pass the resource directly. If the image has its own smartimage widget, use the relativeResourceName
+        to let the CQ Image code retrieve the resource.
+        </description>
+        <example>
+            &lt;!--  using relativeResourceName --&gt;
+            &lt;sni:image resource="${resource}" relativeResourceName="image" renditionPrefix="sni.web.120.90" imgClass="foo" drawAnchor="false" selector=".img" /&gt;
+
+            &lt;!-- the resource attribute value is an image -->
+            &lt;c:forEach var="image" items="${sni:resourceChildIterator(images)}"&gt;
+                &lt;sni:image resource="${image}" renditionPrefix="sni.wcm.120.90" selector=".img" /&gt;
+            &lt;/c:forEach>
+        </example>
+        <attribute>
+            <name>resource</name>
+            <required>true</required>
+            <description>image resource to render an img tag from</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>relativeResourceName</name>
+            <required>false</required>
+            <description>name of resource relative to the value passed in the resource attribute, if it is not an image</description>
+        </attribute>
+        <attribute>
+            <name>renditionPrefix</name>
+            <required>false</required>
+            <description>string prefix of rendition name, should include size discriminator (e.g., sni-wcm.120.90, sni-wcm.lead, or whatever naming scheme we use)</description>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>selector</name>
+            <required>false</required>
+            <description>the sling selector to apply for dynamic rendering</description>
+        </attribute>
+        <attribute>
+            <name>drawAnchor</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+            <description>draw anchor tag using the image node's linkURL attribute as href</description>
+        </attribute>
+        <attribute>
+            <name>linkClass</name>
+            <required>false</required>
+            <description>class to put on anchor tag around image</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>linkTitle</name>
+            <required>false</required>
+            <description>value for the title attribute of anchor tag</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgClass</name>
+            <required>false</required>
+            <description>class to put on img tag</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgAlt</name>
+            <required>false</required>
+            <description>value for the alt attribute of the image</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgTitle</name>
+            <required>false</required>
+            <description>value for the title attribute of the image</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>htmlHeight</name>
+            <required>false</required>
+            <description>value for the height attribute of the image</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>htmlWidth</name>
+            <required>false</required>
+            <description>value for the height attribute of the image</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>a</name>
+        <description>
+        A convenience tag to encapsulate conditional logic related to anchor tags. Usually an anchor tag is not
+        desired if the href value is not set. This tag will write an anchor tag around its body only if the href attribute has
+        a value.
+        </description>
+        <example>
+            &lt;sni:a href="${linkURL}" title="${myTitle}" &gt;
+                &lt;!-- example body content using an image resource --&gt;
+                &lt;sni:image resource="${image}" renditionPrefix="sni.web.120.90" imgClass="foo" drawAnchor="false" selector=".img" /&gt;
+            &lt;/sni:a&gt;
+        </example>
+        <tag-class>com.scrippsnetworks.wcm.taglib.AnchorTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>href</name>
+            <required>true</required>
+            <description>value for the href attribute of the anchor</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>cssClass</name>
+            <required>false</required>
+            <description>value for the class attribute of the anchor</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+		<attribute>
+			<name>dataToggle</name>
+			<required>false</required>
+			<description>Used for certain JavaScript interactions</description>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>dataTarget</name>
+			<required>false</required>
+			<description>Used for certain JavaScript interactions</description>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <description>value for the title attribute of the anchor</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>rel</name>
+            <required>false</required>
+            <description>value for the rel attribute of the anchor</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>recordEvent</name>
+        	<required>false</required>
+        	<description>The event to be recorded.</description>
+        </attribute>
+        <attribute>
+        	<name>linkPosition</name>
+        	<required>false</required>
+        	<description>The event values to be recorded.</description>
+        </attribute>
+		<attribute>
+        	<name>target</name>
+        	<required>false</required>
+        	<description>value for the target attribute of the anchor.</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>fragmentId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>value for the fragment identifier of the anchor</description>
+        </attribute>
+        <attribute>
+            <name>itemProp</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>Value for the itemprop attribute.</description>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>moduleRegion</name>
+        <description>
+        This tag accepts a sling resource for a module, retrieves the defaultRegion property
+        for that module and writes it as a class inside a div tag.  This is for dynamically
+        changing the region classes in the module-editor page.
+        </description>
+        <example>
+            &lt;sni:moduleRegion resource="${someResource}"&gt;
+                &lt;cq:include path="par" resourceType="foundation/components/parsys" /&gt;
+            &lt;/sni:moduleRegion&gt;
+        </example>
+        <tag-class>com.scrippsnetworks.wcm.taglib.ModuleEditorRegionsTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>resource</name>
+            <required>true</required>
+            <description>module resource to retrieve defaultRegion value from</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>cssClass</name>
+            <required>false</required>
+            <description>optional, additional CSS class to write into div</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>propertyName</name>
+            <required>false</required>
+            <description>override default property name of "defaultRegion"</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>util</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.UtilTag</tag-class>
+        <body-content>empty</body-content>
+        <description>
+        Encapsulates java logic into a single tag. Using the provided resource
+        </description>
+        <example>
+            &lt;sni:util resource="${someResource}" collection="${entryStringsList}"&gt;
+            &lt;/sni:util&gt;
+        </example>
+        <attribute>
+            <name>resource</name>
+            <required>true</required>
+            <description>image resource to render an util tag from</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>collection</name>
+            <required>true</required>
+            <type>com.scrippsnetworks.wcm.taglib.ListBean</type>
+            <description>entry Strings</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>paginationNavTag</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.PaginationNavTag</tag-class>
+        <body-content>empty</body-content>
+        <description>
+            Draws the pagination navigation controls for multi-page articles.
+        </description>
+        <attribute>
+            <name>paginator</name>
+            <required>true</required>
+            <description>Paginator object from current page</description>
+            <type>com.scrippsnetworks.wcm.parsys.Paginator</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+		<attribute>
+            <name>apptype</name>
+            <required>false</required>
+            <description>Application type web or mobile to display different pagination</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>thumbnailGallery</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.photogallery.ThumbnailGalleryTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Draws markup for thumbnail gallery within Photo Gallery page</description>
+        <attribute>
+            <name>galleryList</name>
+            <required>true</required>
+            <description>List of PhotoGallery objects</description>
+            <type>java.util.List</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>currentPageNum</name>
+            <required>true</required>
+            <description>Current "page" number for the photo gallery in context of AJAX pagination</description>
+            <type>java.lang.Integer</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>photoGalleryJson</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.photogallery.PhotoGalleryJsonTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Draws the script tag and block of JSON that allows dynamic page switching in the photo galleries</description>
+        <attribute>
+            <name>galleryList</name>
+            <required>true</required>
+            <description>List of PhotoGallery objects</description>
+            <type>java.util.List</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>currentIndex</name>
+            <required>true</required>
+            <description>Current "page" number for the photo gallery in context of AJAX pagination</description>
+            <type>java.lang.Integer</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>articleByline</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.article.ArticleBylineTag</tag-class>
+        <description>Checks if an article is the child of a Show page, if so writes out a link to that show page</description>
+        <attribute>
+            <name>resource</name>
+            <required>true</required>
+            <description>Sling Resource for the page you're on</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+		<attribute>
+            <name>openTags</name>
+            <required>false</required>
+            <description>HTML open tags to go before the byline only if there is a byline.</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+		<attribute>
+            <name>closeTags</name>
+            <required>false</required>
+            <description>HTML close tags to go after the byline only if there is a byline.</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>episodePreviousNext</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.episode.PreviousNextTag</tag-class>
+        <description>
+            Tag that writes out previous/next episode navigation links
+        </description>
+        <attribute>
+            <name>resource</name>
+            <required>true</required>
+            <description>Sling Resource in hand</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>episodeAssetPath</name>
+            <required>true</required>
+            <description>String path to the episode asset you are currently working with</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>apptype</name>
+            <required>false</required>
+            <description>Application type web or mobile to display different prev and next link</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>moreEpisodes</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.episode.MoreEpisodesTag</tag-class>
+        <description>
+            For Episode pages, writes out the MORE EPISODES block
+        </description>
+        <attribute>
+            <name>resource</name>
+            <required>true</required>
+            <description>Sling Resource in hand</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>episodeAssetPath</name>
+            <required>true</required>
+            <description>String path to the episode asset you are currently working with</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>apptype</name>
+            <required>false</required>
+            <description>Application type web or mobile to display different prev and next link</description>
+            <type>java.lang.String</type>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+	<tag>
+        <name>articleStepbyStepThumbnailViewer</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.articlestepbystep.ArticleStepbyStepThumbnailTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Draws markup for thumbnail  within Article Step by Step page</description>
+        <attribute>
+            <name>articleStepbyStepImages</name>
+            <required>true</required>
+            <description>List of ArticleStepbyStep Image objects</description>
+            <type>java.util.List</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>currentPageNum</name>
+            <required>true</required>
+            <description>Current "page" number for the article step by step in context of AJAX pagination</description>
+            <type>int</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+	<tag>
+        <name>damImage</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.DamImageTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Draws img tag for DAM image resources.</description>
+        <attribute>
+            <name>resource</name>
+            <required>false</required>
+            <description>image resource to render an img tag from</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>path</name>
+            <required>false</required>
+            <description>path to image resource to render an img tag from</description>
+            <type>org.apache.sling.api.resource.Resource</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>renditionPrefix</name>
+            <required>false</required>
+            <description>string prefix of rendition name, should include size discriminator (e.g., sni-wcm.120.90, sni-wcm.lead, or whatever naming scheme we use)</description>
+        </attribute>
+        <attribute>
+            <name>imgClass</name>
+            <required>false</required>
+            <description>class to put on img tag</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgAlt</name>
+            <required>false</required>
+            <description>value for the alt attribute of the image</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>htmlHeight</name>
+            <required>false</required>
+            <description>value for the height attribute of the image</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>htmlWidth</name>
+            <required>false</required>
+            <description>value for the height attribute of the image</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>xmlExport</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.export.XmlExportTag</tag-class>
+        <body-content>empty</body-content>
+        <description>This tag is an entry point to the XML exporting system</description>
+        <attribute>
+            <name>currentPage</name>
+            <required>true</required>
+            <description>the CQ Page from which you want to create an XML record</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+	<tag>
+		<name>photoGalleryCarouselItems</name>
+		<tag-class>com.scrippsnetworks.wcm.taglib.photogallery.PhotoGalleryCarouselItemsTag</tag-class>
+		<body-content>empty</body-content>
+		<description>Load the items for a photo gallery carousel</description>
+		<attribute>
+			<name>tabItems</name>
+			<required>true</required>
+			<description>The name of the property where the carousel items are stored on the page context</description>
+			<type>java.lang.String</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>slidesVar</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+			<description>The name of the variable to store the carousel slides into</description>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+    <tag>
+        <name>outbrain</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.OutbrainTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Output Outbrain DIV with desired parameters</description>
+        <attribute>
+            <name>widgetId</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>obTemplate</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>recaptcha</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.ReCaptchaTag</tag-class>
+        <body-content>empty</body-content>
+        <description>Output ReCaptcha image and form elements</description>
+        <attribute>
+            <name>noscript</name>
+            <required>false</required>
+            <type>boolean</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>theme</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>lang</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>widgetId</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tabIndex</name>
+            <required>false</required>
+            <type>int</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>rumHeader</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.rum.RumBrowserTimingHeaderTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+
+    <tag>
+        <name>rumFooter</name>
+        <tag-class>com.scrippsnetworks.wcm.taglib.rum.RumBrowserTimingFooterTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>encodeXss</name>
+        <description>
+            Tag that  encodes a string for HTML element content.
+        </description>
+        <example>
+            &lt;sni:encodeXss text="${text}"&gt;
+        </example>
+        <tag-class>com.scrippsnetworks.wcm.taglib.EncodeXssForHtml</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+            <description>value for the href attribute of the anchor</description>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+        <!-- Custom EL Functions -->
+    <function>
+        <name>resourceChild</name>
+        <description>
+        Simple function which will return the named child of the given resource. Simply passes through to
+        Resource#getChild(childName), so a scriptlet does not have to be used.
+        </description>
+        <example>
+            &lt;!-- set variable for later use in EL expressions -->
+            &lt;c:set var="myvar" value="${sni:resourceChild(resource,'images')" &gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getResourceChild(org.apache.sling.api.resource.Resource,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>resourceSibling</name>
+        <description>
+        Returns a sibling node of the given resource. This function is equivalent to the scriplet code
+        resource.getParent().getChild("name-of-sibling");
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getResourceSibling(org.apache.sling.api.resource.Resource,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+       <name>removeMarkup</name>
+       <description>
+       This accepts a string and removes any markup from that string, including JavaScript, HTML, XML, etc
+       </description>
+       <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+       <function-signature>java.lang.String removeMarkup(java.lang.String)</function-signature>
+   </function>
+
+    <function>
+       <name>removeMarkupExceptSimpleText</name>
+       <description>
+       This accepts a string and removes any markup that would be invalid within an A tag.
+       </description>
+       <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+       <function-signature>java.lang.String removeMarkupExceptSimpleText(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+       <name>removeMarkupExceptPrintable</name>
+       <description>
+       This accepts a string and removes any markup unsuitable for print pages, leaving B, EM, I, STRONG, U and BR.
+       </description>
+       <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+       <function-signature>java.lang.String removeMarkupExceptPrintable(java.lang.String)</function-signature>
+    </function>
+
+	<function>
+       <name>removeMarkupExceptAnchors</name>
+       <description>
+       This accepts a string and removes any markup but anchor tags.
+       </description>
+       <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+       <function-signature>java.lang.String removeMarkupExceptAnchors(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+    	<name>removeMarkupExceptSimpleTextAndAnchors</name>
+    	<description>
+    	This accepts a string and removes any markup but inline styles and anchor tags.
+    	</description>
+    	<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+    	<function-signature>java.lang.String removeMarkupExceptSimpleTextAndAnchors(java.lang.String)</function-signature>
+    </function>
+
+     <function>
+       <name>splitAndRemoveMarkupExceptSimpleTextAndAnchors</name>
+       <description>
+       This accepts a string, splits the string based on the delimeter passed and removes any markup but inline styles and anchor tags.
+       </description>
+       <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+       <function-signature>java.lang.String splitAndRemoveMarkupExceptSimpleTextAndAnchors(java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>setHtmlAttribute</name>
+        <description>
+        Set attributes on specified elements in provided HTML fragment.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String setHtmlAttribute(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>communityReviewsHost</name>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String formatCommunityReviewHostUrl(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>communityMetadataHost</name>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String formatCommunityReviewMetadataHostUrl(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>resourceChildIterator</name>
+        <description>
+        Returns an iterator for the given resource's children. Passes through to
+        Resource#listChildren(). Mainly intended for use with a c:forEach. If the resource passed in is null, an empty list iterator is returned.
+        </description>
+        <example>
+            &lt;!-- the images EL variable is a resource whose children we want to iterate over --&gt;
+            &lt;c:forEach var="image" items="${sni:resourceChildIterator(images)}"&gt;
+                ... do stuff ...
+            &lt;/c:forEach&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Iterator getResourceChildIterator(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+    	<name>resourceChildCount</name>
+    	<description>
+    		Returns children count for the given resource.
+    	</description>
+    	<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>int getResourceChildCount(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+     <function>
+        <name>resourceProperties</name>
+        <description>
+        Returns a ValueMap of the given resource's properties, which will behave the same as the
+        properties ValueMap object for the resource handed to the jsp.
+        </description>
+        <example>
+            &lt;c:set var="myproperties" value="${sni:resourceProperties(myresource)"&gt;
+            &lt;!-- example usage of myproperties --&gt;
+            &lt;cq:text value="${myproperties['propertyName']}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.ValueMap getResourceProperties(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>resourceProperty</name>
+        <description>
+        Returns the named String property from the given resource. Gets the properties ValueMap from the
+        resource and calls ValueMap#get(propName, String.class).
+        </description>
+        <example>
+            &lt;c:set var="myvar" value="${sni:resourceProperty(myresource,'propertyName')}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getResourceProperty(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+	<function>
+        <name>resourcePropertyAsArray</name>
+        <description>
+        	Returns the named property of the given type as string array.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String[] getResourcePropertyAsArray(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>typedResourceProperty</name>
+        <description>
+        Returns the named property of the given type from the given resource. Gets the ValueMap from the resource and calls
+        ValueMap#get(propName, type). The return type is Object, so I don't know how that plays with EL type magic. It works
+        for String properties, but I haven't tested it with anything special.
+        </description>
+        <example>
+            &lt;c:set var="myvar" value="${sni:typedResourceProperty(myresource,'propertyName',String.class)}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>Object getResourceProperty(org.apache.sling.api.resource.Resource, java.lang.String, java.lang.Class)</function-signature>
+    </function>
+
+    <function>
+        <name>splitStringArrayProperty</name>
+        <description>
+		Returns a string array property split into a List&lt;List&lt;String&gt;&gt;, or an empty List if the property is not present,
+		could not be converted, or there was some other problem.
+        </description>
+        <example>
+			&lt;c:set var="myvar" value="${sni:splitStringArrayProperty(properties, "foo", 2}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>List&lt;List&lt;String&gt;&gt; splitStringArrayProperty(org.apache.sling.api.resource.ValueMap,
+			java.lang.String, int)</function-signature>
+    </function>
+
+    <function>
+        <name>getPageTemplateProperties</name>
+        <description>
+		Uses the given ComponentContext to get the page the page template resource properties and returns them.
+        </description>
+        <example>
+			&lt;c:set var="myvar" value="${sni:getPageTemplateProperties(currentPage)}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.ValueMap getPageTemplateProperties(com.day.cq.wcm.api.Page)</function-signature>
+    </function>
+
+    <function>
+        <name>getResource</name>
+        <description>
+		Uses the given ResourceResolver to retrieve the named Sling Resource.
+        </description>
+        <example>
+			&lt;c:set var="myvar" value="${sni:getResource(resourceResolver, pathName}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getResource(org.apache.sling.api.resource.ResourceResolver, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>isNonExistingResource</name>
+        <description>
+		Returns the result of calling ResourceUtil.isNonExistingResource passing the given resource. If the resource
+		is null true is returned.
+        </description>
+        <example>
+			&lt;c:set var="myvar" value="${sni:isNonExistingResource(myresource}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>boolean isNonExistingResource(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getModuleNode</name>
+        <description>
+            accepts a resource, returns the first child found for that resource. this is useful for
+            retrieving module nodes from underneath a parsys in a template, where the module name is arbitrary but
+            the node structure is known. otherwise it is unwise to retrieve nodes whose names you don't know.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getResourceChild(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getDataFromNode</name>
+        <description>
+            Accepts a resource and a path to the desired data node.  Returns a Map which contains
+            all of the properties on the node at the given path.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.Map getAssetData(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+	<function>
+        <name>mergeResourceProperties</name>
+        <description>
+            Accepts a resource (A), a path to a resource node containing default properties (B), and a String array of property names
+            that are allowed to be overridden by resource A
+            Returns a Map containing merged properties
+            WARNING: this interface is in flux. Currently, the merge is incomplete.
+            Only default properties are set (though, overrides work)
+            Only a single level of properties is supported (no nested node/properties are merged)
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.Map mergeResourceProperties(org.apache.sling.api.resource.Resource, java.lang.String, java.lang.String[])</function-signature>
+    </function>
+
+    <function>
+        <name>propertyMap</name>
+        <description>
+            Get the properties from a Resource as a Map of Objects
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getPropertyMap(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>unescapeHtml</name>
+        <description>
+            Accepts a string which should contain escaped HTML entities, to convert those back to HTML.  This is
+            useful for scrubbing data for recipes or other rich text sources. This is a wrapper for the Apache
+            StringUtils method of the same name.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String unescapeHtml(java.lang.String)</function-signature>
+    </function>
+
+	<function>
+        <name>encodeUrl</name>
+        <description>
+            Uses the apache URLCodec class to encode a URL using UTF-8
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String encodeUrl(java.lang.String)</function-signature>
+    </function>
+
+	<function>
+        <name>decodeUrl</name>
+        <description>
+            Uses the apache URLCodec class to decode an encoded URL using UTF-8
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String decodeUrl(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>sectionNameFromContentPath</name>
+        <description>
+            Plucks the section name from a content path, given that the section lives directly under /content/cook.
+            Returns null if nothing found.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String sectionNameFromContentPath(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>sectionNameFromResource</name>
+        <description>
+            Get the section name for a given content page resource. Applies business logic to known resource types in order
+            to return section names where the path itself is not the true indicator.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String sectionNameFromResource(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getMicroFormatTime</name>
+        <description>
+            Accepts a string representing a duration in minutes, returns a string in ISO 8601 microformat.  Used
+            for SEO purposes to include recipe data in a reference format.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.recipe.FormatUtil</function-class>
+        <function-signature>java.lang.String getIso8601Duration(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getDisplayTime</name>
+        <description>
+            Used for pretty-printing times.  Accepts a String representing a duration in minutes, returns
+            a String of formatted time busted into hours/minutes.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.recipe.FormatUtil</function-class>
+        <function-signature>java.lang.String getDisplayTime(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>addTruncationMarkdown</name>
+        <description>
+            Used for formatting long Strings for truncation by an external JavaScript library. This
+            means inserting some markdown around the part of the string that is longer than the maximum
+            length.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.recipe.FormatUtil</function-class>
+        <function-signature>java.lang.String addTruncationMarkdown(java.lang.String, java.lang.Integer)</function-signature>
+    </function>
+
+    <!-- recipe constructor -->
+    <function>
+        <name>getRecipe</name>
+        <description>
+            Retrieve Recipe object that contains all data contained in a recipe asset node.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.recipe.Recipe getRecipe(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- episode constructor -->
+    <function>
+        <name>getEpisode</name>
+        <description>
+            Retrieve Episode object for rendering episode information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.episode.Episode getEpisode(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- episodelisting constructor -->
+    <function>
+        <name>getEpisodeListing</name>
+        <description>
+            Retrieve EpisodeListing object for rendering episodelisting information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.episodelisting.EpisodeListing getEpisodeListing(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+ <!-- Episode Listing selectors constructor -->
+    <function>
+        <name>getEpisodeListingSelectors</name>
+        <description>
+            Retrieve episode listing page selectors in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.episodelisting.EpisodeListingSelectors getEpisodeListingSelectors(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+
+ <!-- Asset Recipe selectors constructor -->
+    <function>
+        <name>getAssetRecipeSelectors</name>
+        <description>
+            Retrieve asset recipe page selectors in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.recipe.asset.AssetRecipeSelectors getAssetRecipeSelectors(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+
+    <!-- topic constructor -->
+    <function>
+        <name>getTopic</name>
+        <description>
+            Retrieve Topic object for rendering topic search result information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.topic.Topic getTopic(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- SocialToolbar constructor -->
+    <function>
+        <name>getSocialValues</name>
+        <description>
+            Retrieve social tool bar object for fetching FB and twitter messages/values.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.socialtoolbar.SocialToolbar getSocialValues(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+     <!-- Channel constructor -->
+    <function>
+        <name>getChannel</name>
+        <description>
+            Retrieve video-channel page object for rendering channel information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.video.channel.Channel getChannel(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+
+     <!-- Player constructor -->
+    <function>
+        <name>getPlayer</name>
+        <description>
+            Retrieve video-player page object for rendering player information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.video.player.Player getPlayer(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+
+ <!-- Video constructor -->
+    <function>
+        <name>getVideo</name>
+        <description>
+            Retrieve video page object for rendering player information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.video.Video getVideo(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+     <!-- Player page pathinfo constructor -->
+    <function>
+        <name>getPlayerPathInfo</name>
+        <description>
+            Retrieve video-player page path Info for player page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.video.player.PlayerSelectors getPlayerPathInfo(java.lang.String)</function-signature>
+    </function>
+
+
+     <!-- Player selectors constructor -->
+    <function>
+        <name>getPlayerSelectors</name>
+        <description>
+            Retrieve video-player page selectors in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.video.player.PlayerSelectors getPlayerSelectors(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+
+    <!-- article constructor -->
+    <function>
+        <name>getArticle</name>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.article.Article getArticle(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- show constructor -->
+    <function>
+        <name>getShow</name>
+        <description>
+            Retrieve Show object for rendering show information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.show.Show getShow(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+       <!-- menu constructor -->
+    <function>
+        <name>getMenu</name>
+        <description>
+            Retrieve Menu object for rendering menu information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.menu.Menu getMenu(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- Talent constructor -->
+    <function>
+        <name>getTalentPageObject</name>
+        <description>
+            Retrieve Talent object for rendering menu information in a page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.talent.Talent getTalent(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- pagination functions -->
+    <function>
+        <name>getPageNum</name>
+        <description>
+            Accepts a SlingHttpServletRequest and loops through selectors. If it finds a selector named
+            page-X, returns X. Useful for pagination. This info can also be gotten from an instantiated
+            Paginator object directly by calling it's getPageNum method.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.parsys.Paginator</function-class>
+        <function-signature>int pageNumberFromSlingRequest(org.apache.sling.api.SlingHttpServletRequest)</function-signature>
+    </function>
+
+    <function>
+        <name>paginate</name>
+        <description>
+            Accepts a sling Resource of a parsys and returns a Paginator object, used for paginating using the
+            page-break component as a delimiter.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.parsys.Paginator getPaginator(org.apache.sling.api.resource.Resource, org.apache.sling.api.SlingHttpServletRequest)</function-signature>
+    </function>
+
+    <function>
+        <name>getPageFromPaginator</name>
+        <description>
+            Accepts a Paginator and a Page Number, returns a List of Resources that represent that page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.List getPageFromPaginator(com.scrippsnetworks.wcm.parsys.Paginator, int)</function-signature>
+    </function>
+    <!-- end pagination functions -->
+
+    <function>
+        <name>currentSchedule</name>
+        <description>
+            Return a Resource for the schedule asset that corresponds to the current time
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource currentSchedule(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>tenPMSchedule</name>
+        <description>
+            Return a Resource for a schedule asset corresponding to 10:00 pm today
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource tenPMSchedule(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+ 	<function>
+        <name>referencedModulePaths</name>
+        <description>
+           referencedModulePaths
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.ArrayList referencedModulePaths(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+	<function>
+        <name>isValidMobileModule</name>
+        <description>
+           isValidMobileModule
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>boolean isValidMobileModule(org.apache.sling.api.SlingHttpServletRequest,java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getEpisodeData</name>
+        <description>
+           Retrieve upcoming and recent episodes for specific show.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.List getEpisodeData(com.day.cq.wcm.api.Page,java.lang.String, java.lang.String,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getEpisodeDataThisWeek</name>
+        <description>
+           Retrieve episodes this week for specific show.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getEpisodeDataThisWeek(com.day.cq.wcm.api.Page,java.lang.String,org.apache.sling.api.SlingHttpServletRequest,org.apache.sling.api.scripting.SlingScriptHelper,java.lang.String)</function-signature>
+	</function>
+
+
+    <function>
+        <name>getEpisodesJustOnTv</name>
+        <description>
+           Function to get episode - single recently aired, currently aired, and up coming episode in 2hrs time span (back and future)
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getEpisodesJustOnTv(com.day.cq.wcm.api.Page,boolean)</function-signature>
+	</function>
+
+	<function>
+		<name>getSuperleadCarouselSlide</name>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>com.scrippsnetworks.wcm.carousel.SuperleadCarouselSlide getSuperleadCarouselSlide(org.apache.sling.api.resource.Resource)</function-signature>
+	</function>
+
+	<function>
+		<name>getSuperleadCarouselSlides</name>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>java.util.List getSuperleadCarouselSlides(java.util.Iterator)</function-signature>
+	</function>
+
+    <function>
+        <name>getPhotoGallery</name>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.photogallery.PhotoGallery getPhotoGallery(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getPhotoGallerySlide</name>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.photogallery.PhotoGallery getPhotoGallerySlide(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>photoGalleriesFromPaginator</name>
+        <description>
+            Retrieves a List of PhotoGallery objects from a Paginator object, by finding all of the photo-gallery
+            components within the Paginator and converting those to PhotoGallery objects. Used in Photo Gallery pages.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.photogallery.PhotoGalleryUtil</function-class>
+        <function-signature>java.util.List photoGalleriesFromPaginator(com.scrippsnetworks.wcm.parsys.Paginator)</function-signature>
+    </function>
+
+    <function>
+        <name>findVideosByVideoContentPath</name>
+        <description>
+            Using the sling path to a video content page, search for related video assets using JCR search
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findVideosByVideoContentPath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findChannelsByVideoAssetPath</name>
+        <description>
+            If you have a path to a video asset and you want to find channel pages that use that path, this is yo method
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findChannelsByVideoAssetPath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findGalleryByImgPath</name>
+        <description>
+            Lookup  a PhotoGallery using the image path of the PhotoGallery to identify the gallery.
+            This is handy when outside the context of a paginator and you have a list of PhotoGalleries in hand.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.photogallery.PhotoGalleryUtil</function-class>
+        <function-signature>com.scrippsnetworks.wcm.asset.photogallery.PhotoGallery findGalleryByImgPath(java.util.List, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>attachedContentTitle</name>
+        <description>
+            Find the title of a resource that is attached to a photogallery.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.photogallery.PhotoGalleryUtil</function-class>
+        <function-signature>java.lang.String attachedContentTitleFromPhotoGallery(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>completeHREF</name>
+        <description>
+            Handy for completing resource paths to valid hrefs
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.TagUtils</function-class>
+        <function-signature>java.lang.String completeHREF(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getSEOTitle</name>
+        <description>
+            Accepts a page resource and returns the formatted SEO Title String for that page type
+        </description>
+        <function-class>com.scrippsnetworks.wcm.seo.Title</function-class>
+        <function-signature>java.lang.String getSEOTitle(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getSEODescription</name>
+        <description>
+            Accepts a page resource and returns the formatted SEO Description String for that page type
+        </description>
+        <function-class>com.scrippsnetworks.wcm.seo.Description</function-class>
+        <function-signature>java.lang.String getSEODescription(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getBasePath</name>
+        <description>
+            This takes a String path to a resource (or a path to anything, really) and chomps the String
+            starting at the first instance of /jcr:content. This is handy when constructing a URL to a resource
+            in EL context, without having to drop into a scriptlet to do it.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getBasePath(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>showPageUrlFromShowAssetPath</name>
+        <description>
+            Accepts a String representing the JCR path to a show asset, returns a String representing the relative
+            path to the show content page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String showPageUrlFromShowAssetPath(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>contentPathFromAssetPath</name>
+        <description>
+            get the content path from an asset path by swapping out the asset-specific part of the path with the content root path
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String contentPathFromAssetPath(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findSchedulesFromTodayForward</name>
+        <description>
+            Search through schedule assets to find all assets from today forward.  Returns a List of property maps from the schedule nodes.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findSchedulesFromTodayForward(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>findRecipeContentPagesByRecipeAssetPath</name>
+        <description>
+            Search through JCR content path for recipe pages, looking for sni:assetLink property that matches
+            the recipe asset path in hand.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findRecipeContentPagesByRecipeAssetPath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findEpisodesByRecipePath</name>
+        <description>
+            Uses search API to find episodes associated to recipes, searching by the path to the recipe asset.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findEpisodesByRecipePath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findPeopleByShowAbbr</name>
+        <description>
+            Uses search API to find person asset nodes by searching on the show abbreviation property on the person asset.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findPeopleByShowAbbr(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findShowsByShowAbbr</name>
+        <description>
+            Uses JCR Search API to find show asset nodes by searching on the showAbbr property.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findShowsByShowAbbr(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findShowsByPersonPath</name>
+        <description>
+            Uses JCR Search API to find show asset nodes by searching on sni:people property
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findShowsByPersonPath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>tuneInTimes</name>
+        <description>
+            Specifically for locating schedules that contain given episode asset paths and are in the future.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.EpisodePage</function-class>
+        <function-signature>java.util.List tuneInTimes(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>findSchedulesByEpisodePath</name>
+        <description>
+            Uses JCR Search API to find schedule asset nodes, searching on the episode path property
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List findSchedulesByEpisodePath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>showFromEpisodePath</name>
+        <description>
+            Given a Resource and a String path to an episode, will retrive a Map of properties from the show
+            node that contains the episode. Will return null in the case that something went wrong.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.Map showFromEpisodePath(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>showAbbrFromEpisodeNumber</name>
+        <description>
+            String util to get a show abbreviation from the episode number, assuming the format is like: XXXX-YYYY where
+            XXXX is the show abbreviation.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String showAbbrFromEpisodeNumber(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>removeNamespace</name>
+        <description>
+            Given a value such as cooking-channel:blah, removes the cooking-channel part and returns blah.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String removeNamespace(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>termFromTag</name>
+        <description>
+            Given a String tag, like cook-tag:main-ingredient/chicken, grab the term from the tag (like chicken).
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String termFromTag(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>prettyPrintEmptyProperty</name>
+        <description>
+            Given a String property value, transforms nulls and permutations of the word "none" into "--".
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.recipe.FormatFunctions</function-class>
+        <function-signature>java.lang.String prettyPrintEmptyProperty(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>prettyPrintTagTerm</name>
+        <description>
+            Given a String tag, grab the term from the tag and format it for printing on a page.  Like: cook-tags:main-ingredient/chicken-breast becomes "Chicken Breast"
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String prettyPrintTagTerm(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>topicUrlFromTag</name>
+        <description>
+            Returns a relative URL to a topic page for a given tag. Checks to see if the topic page exists first, if not
+            returns the URL to the topics-a-z page instead.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String topicUrlFromTag(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>dateMapFromSchedulePath</name>
+        <description>Retrieve a map of date pieces from the path of a schedule asset. Keys to map are 'year', 'month', 'day', and 'time' which is translated from the time code</description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.Map dateMapFromSchedulePath(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>personPagePathFromAssetPath</name>
+        <description>
+            Get the path to a person's content page based on the path to the people asset for that person.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String personPagePathFromAssetPath(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>recipesFromEpisodeAsset</name>
+        <description>
+            Constructs and returns a list of Recipe objects given the path to an episode.  List is constructed
+            from the recipes contained in the sni:recipes property of the episode asset.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.util.List recipesFromEpisodeAsset(org.apache.sling.api.resource.Resource, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>articleSimpleTitleComponent</name>
+        <description>
+            Get an abstract ArticleSimpleTitleComponent object from the Resource of an article-simple-title component
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.asset.article.simple.ArticleSimpleTitleComponent articleSimpleTitleComponent(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>articleStepByStepTextImageComponent</name>
+        <description>
+            Get an object representation of an Article Step By Step text/image component
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.asset.article.stepbystep.ArticleStepByStepTextImageComponent articleStepByStepTextImageComponent(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>articleSimpleTextImageComponent</name>
+        <description>
+            Get an abstract ArticleSimpleTextImageComponent object from the Resource of an article-simple-text-image component
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.asset.article.simple.ArticleSimpleTextImageComponent articleSimpleTextImageComponent(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>photoGalleryTitleDescriptionComponent</name>
+        <description>
+            Instantiate an abstract TitleDescriptionComponent for the purpose of rendering data contained in that component.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.asset.photogallery.TitleDescriptionComponent photoGalleryTitleDescriptionComponent(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>ceil</name>
+        <description>
+            Uses Math API to get the double rounding up to the next integer.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>double ceil(double)</function-signature>
+    </function>
+
+    <function>
+        <name>isHubMaster</name>
+        <description>
+            Check if an SniPage is the master of a Hub.  Accepts a Hub object you want to query, and the sniPage you want to check for hubness.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.hub.HubUtil</function-class>
+        <function-signature>boolean isHubMaster(com.scrippsnetworks.wcm.hub.Hub, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <function>
+        <name>isHubChild</name>
+        <description>
+            Check if an SniPage is a child in the hub.  Accepts a Hub object and the SniPage you want to check.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.hub.HubUtil</function-class>
+        <function-signature>boolean isHubChild(com.scrippsnetworks.wcm.hub.Hub, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <function>
+        <name>isHubbed</name>
+        <description>
+            Check if an SniPage is simply in a hub.  Accepts a Hub object and the SniPage you want to check.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.hub.HubUtil</function-class>
+        <function-signature>boolean isHubbed(com.scrippsnetworks.wcm.hub.Hub, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <function>
+        <name>pageHasChild</name>
+        <description>
+            Determines whether a child page at a given path exists.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.day.cq.wcm.api.Page pageHasChild(com.day.cq.wcm.api.Page, java.lang.String)</function-signature>
+    </function>
+	<function>
+        <name>articleImagesFromArticlePage</name>
+        <description>
+            Retrieves a List of ArticleStepbyStep image objects from a AritclePage object, by finding all of the article step by step image components within the ArticlePage and converting those to ArticleStepbyStep objects. Used in Article conetent pages.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.article.stepbystep.ArticleStepbyStepUitl</function-class>
+        <function-signature>java.util.List articleImagesFromArticlePage( java.util.List )</function-signature>
+    </function>
+	<function>
+        <name>currentDayEpisodeData</name>
+        <description>
+        Simple function which will return the scheduled episode data for current day
+        </description>
+        <example>
+            &lt;!-- set variable for later use in EL expressions -->
+            &lt;c:set var="currDayEpisodes" value="${currentDayEpisodeData(pageManager)}" &gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getCurrentDayEpisodeData(com.day.cq.wcm.api.PageManager, javax.jcr.Node)</function-signature>
+    </function>
+
+    <function>
+        <name>dateStampFromCalendar</name>
+        <description>
+            Given a Calendar object, returns a datestamp usable in XML rendering, etc
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String dateStampFromCalendar(java.util.Calendar)</function-signature>
+    </function>
+
+    <function>
+        <name>timeStampFromCalendar</name>
+        <description>Given a Calendar, returns a timestamp usable in XML rendering, etc HH:MM:SS</description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String timeStampFromCalendar(java.util.Calendar)</function-signature>
+    </function>
+
+    <function>
+        <name>convertMilTimeToStandard</name>
+        <description>
+            String utility to convert a timestamp that is in military time to standard time. Returns a map with
+            time and period.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String convertMilTimeToStandard(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>tuneInTimeStamp</name>
+        <description>
+            Generate a timestamp specific to the Tune-In time module on episode pages.  Accepts a Map created by
+            the dateMapFromSchedulePath function.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.Episode</function-class>
+        <function-signature>java.lang.String tuneInTimeStamp(java.util.Map)</function-signature>
+    </function>
+
+        <function>
+        <name>epsiodeProgramData</name>
+        <description>
+            Retrieves the episode and show information from the episode asset Link. Used in Epsiode pages.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.EpisodePageUtil</function-class>
+        <function-signature>java.util.Map epsiodeProgramData(org.apache.sling.api.resource.Resource,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>episodeRecipeData</name>
+        <description>
+            Retrieves the recipe in this episode from the episode asset Link. Used in Epsiode pages.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.EpisodePageUtil</function-class>
+        <function-signature>java.util.Map episodeRecipeData(org.apache.sling.api.resource.Resource,java.lang.String, javax.jcr.Node)</function-signature>
+    </function>
+
+    <function>
+        <name>moreEpisodesTime</name>
+        <description>
+            Retrieves the list of tune in times for a given episode based on schedule data. Used in episode pages
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.EpisodePageUtil</function-class>
+        <function-signature>java.util.Map moreEpisodesTime(java.lang.String, javax.jcr.Node)</function-signature>
+    </function>
+
+    <function>
+        <name>moreEpisodesData</name>
+        <description>
+            Retrieves the list of more episodes from that episode based on sorting the episode number.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.EpisodePageUtil</function-class>
+        <function-signature>java.util.Map moreEpisodesData(org.apache.sling.api.resource.Resource,java.lang.String, javax.jcr.Node)</function-signature>
+    </function>
+
+     <function>
+        <name>prevNextEpisode</name>
+        <description>
+            Displays the next episode and the previous episodes for a given episode. Used in episode Pages.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.episode.EpisodePageUtil</function-class>
+        <function-signature>java.util.Map prevNextEpisode(org.apache.sling.api.resource.Resource,java.lang.String, javax.jcr.Node)</function-signature>
+    </function>
+
+    <function>
+        <name>getEpisodeAndShowForRecipe</name>
+        <description>
+           Method to retrieve show and episode information related to specific recipe.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getEpisodeAndShowForRecipe(com.day.cq.wcm.api.Page,java.lang.String,java.lang.String)</function-signature>
+    </function>
+
+       <function>
+        <name>getNumberOfVideos</name>
+        <description>
+           Method to get number of Videos embedded within a Video Channel Page
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>int getNumberOfVideos(com.day.cq.wcm.api.Page)</function-signature>
+    </function>
+
+    <function>
+        <name>getFeaturedGallery</name>
+        <description>
+           Method to retrieve list of featured items (recipes) on photo gallery page
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.List getFeaturedGallery(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+     <function>
+        <name>getEpisodeFinderMap</name>
+        <description>
+           Method to get number of Videos embedded within a Video Channel Page
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getEpisodeFinderMap(org.apache.sling.api.scripting.SlingScriptHelper)</function-signature>
+    </function>
+
+    <function>
+        <name>getMergedAssetProperties</name>
+        <description>
+            Returns properties for the page content resource's asset, with page overrides applied.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.util.Map getMergedAssetProperties(org.apache.sling.api.resource.Resource, java.lang.String[])</function-signature>
+    </function>
+
+    <function>
+        <name>findContentForAssetPath</name>
+        <description>
+            Returns a content resource for the given asset path under the given content root.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource findContentForAssetPath(org.apache.sling.api.resource.ResourceResolver, java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getResourcePageType</name>
+        <description>
+            Returns a string representing the page type of the resource.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String getPageType(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getPageType</name>
+        <description>
+            Returns a string representing the page type of the page.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String getPageType(com.day.cq.wcm.api.Page)</function-signature>
+    </function>
+
+    <function>
+        <name>getSearchResponseMap</name>
+        <description>
+            Returns a response from a search service as a map.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.search.SearchUtil</function-class>
+        <function-signature>java.util.Map getSearchResponseMap(org.apache.sling.api.scripting.SlingScriptHelper, java.lang.String, java.util.Map)</function-signature>
+    </function>
+
+    <function>
+        <name>getContentNodeGivenResourceType</name>
+        <description>
+            Returns the content node path given by resource type.
+            params: currentPage
+            		resourceType - We need to pass the entire path of the resource type (Ex: 'sni-wcm/components/pagetypes/program-guide-daily')
+            		root - You can pass either blank (Ex: '') or desired path to filter (Ex: '/content/cook/shows/')
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String getContentNodeGivenResourceType(com.day.cq.wcm.api.Page, java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getHubCount</name>
+        <description>
+            Return the current page's number of assets to be displayed in the hub
+            ex. Video Channel will return the number of videos on the page...
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.hub.HubCount</function-class>
+        <function-signature>int getHubCount(com.day.cq.wcm.api.Page)</function-signature>
+    </function>
+
+    <function>
+        <name>getHubCountTopRecipes</name>
+        <description>
+            Uses the SearchUtil method getSearchResponseMap to query endeca
+            to find the top recipes for the page passed in.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.hub.HubCount</function-class>
+        <function-signature>int getHubCountTopRecipes(com.day.cq.wcm.api.Page, org.apache.sling.api.scripting.SlingScriptHelper)</function-signature>
+    </function>
+
+    <function>
+        <name>capitalizeFully</name>
+        <description>
+            Pass-through for WordUtils.capitalizeFully.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String capitalizeFully(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>talentTitleFromRecipe</name>
+        <description>
+            function to get talent's title associated with recipe
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String talentTitleFromRecipe(com.day.cq.wcm.api.Page)</function-signature>
+    </function>
+
+    <function>
+        <name>originUrlFromRecipe</name>
+        <description>
+            Gets the external URL to a recipe's source description block.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String originUrlFromRecipe(com.scrippsnetworks.wcm.asset.recipe.Recipe)</function-signature>
+    </function>
+
+    <function>
+        <name>getSponsorshipValueForSearchTerm</name>
+        <description>
+            Gets the sponsorship value associated with a search term.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.SponsorshipUtil</function-class>
+        <function-signature>java.lang.String getSponsorshipValueForSearchTerm(java.lang.String, java.lang.String, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+
+    <function>
+        <name>getSearchTermMetadata</name>
+        <description>
+            Gets a SearchTermMetadata object for a search term.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.SearchTermMetadata</function-class>
+        <function-signature>com.scrippsnetworks.wcm.asset.SearchTermMetadata getSearchTermMetadata(java.lang.String, java.lang.String, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+
+    <function>
+        <name>removeExtraListClearDiv</name>
+        <description>
+            This code will remove the first occurrence of <!-- <div class=\"list clear\"></div> --> from the ingredients block.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.recipe.FormatFunctions</function-class>
+        <function-signature>java.lang.String removeExtraListClearDiv(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getRecipePathsFromEpisodeAssetPath</name>
+        <description>
+            Method to retrieve recipe paths from episode, if recipes overrides at content page level else from asset.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.DataUtil</function-class>
+        <function-signature>java.lang.String[] getRecipePathsFromEpisodeAssetPath(java.lang.String,org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getSponsorshipPath</name>
+        <description>
+            Method to resolve sponsorship path given a page and its master hub (can be null). Sponsorship may be inherited.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.asset.SponsorshipUtil</function-class>
+        <function-signature>java.lang.String getSponsorshipPath(com.day.cq.wcm.api.Page,com.scrippsnetworks.wcm.asset.hub.Hub)</function-signature>
+    </function>
+
+    <function>
+        <name>isNonSpecialShow</name>
+        <description>
+		Returns a boolean value based on the show page parameter. Determines if the show is just a special show, or is a
+		normal show with regular series.
+        </description>
+        <example>
+			&lt;c:set var="notspecial" value="${sni:isNonSpecialShow(showPage}" /&gt;
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>boolean isNonSpecialShow(com.day.cq.wcm.api.Page)</function-signature>
+    </function>
+
+	<function>
+        <name>getTextLinkIcon</name>
+        <description>
+			Returns the html needed to display a link type icon given the html from a RTE that contains the icon type.
+        </description>
+        <example>
+			${sni:getTextLinkIcon(valueOfRTE)}
+        </example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getTextLinkIcon(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getOsgiService</name>
+        <description>
+            Gets an instance of an Osgi service from JSP context.
+            This is only good for services registered with this default strategy of className
+            This was exposed in order to support the encapsulation of business logic
+            in a module/page via an osgi service
+            more complicated bindings are not handled in this utility yet
+        </description>
+        <example>${sni:getOsgiService('com.scrippsnetworks.wcm.fnr.module.ListSelectShowsHelper')}</example>
+        <function-class>com.scrippsnetworks.wcm.fnr.util.OsgiHelper</function-class>
+        <function-signature>java.lang.Object taglibGetOsgiService(java.lang.String)</function-signature>
+    </function>
+
+	<function>
+        <name>getSniPage</name>
+        <description>
+			Get an instance of an SniPage from the provided PageManager and path.
+        </description>
+        <example>${sni:getSniPage(pageManager, path)</example>
+        <function-class>com.scrippsnetworks.wcm.page.PageFactory</function-class>
+        <function-signature>com.scrippsnetworks.wcm.page.SniPage getSniPage(com.day.cq.wcm.api.PageManager, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>getContainingPage</name>
+		<description>A wapper for the PageManager getContainingPage method</description>
+		<example>${sni:getContainingPage(myResource)}</example>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>com.scrippsnetworks.wcm.page.SniPage getContainingPage(org.apache.sling.api.resource.Resource)</function-signature>
+	</function>
+
+    <function>
+        <name>getConfigProperty</name>
+        <description>
+            Gets a property from TemplateConfigService or SiteConfigService (trying in that order)
+            It always returns a string and currently doesn't support boolean properties (but could easily be updated to)
+        </description>
+        <example>${sni:getConfigProperty(propertyName)</example>
+        <function-class>com.scrippsnetworks.wcm.fnr.config.ConfigHelper</function-class>
+        <function-signature>java.lang.String taglibGetProperty(java.lang.String)</function-signature>
+    </function>
+
+	<function>
+		<name>getPrimaryTalent</name>
+		<description>
+			Gets the Talent object representing the PrimaryTalent for a page
+		</description>
+		<example>${sni:getPrimaryTalent(sniPage)}</example>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>com.scrippsnetworks.wcm.talent.Talent getPrimaryTalent(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+	</function>
+
+	<function>
+		<name>getTalent</name>
+		<description>
+			Gets a talent object based on a resource
+		</description>
+		<example>${sni:getTalent(talentResource)}</example>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>com.scrippsnetworks.wcm.talent.Talent getTalent(org.apache.sling.api.resource.Resource)</function-signature>
+	</function>
+
+	<function>
+		<name>getBeverage</name>
+		<description>Gets a beverage object for the given sni page</description>
+		<example>${sni:getBeverage(sniPage)}</example>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>com.scrippsnetworks.wcm.beverage.Beverage getBeverage(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+	</function>
+
+	<function>
+		<name>getMetadataProperty</name>
+		<description>Gets a metadata property from a metadata manager</description>
+		<example>${sni:getMetadataProperty(currentSniPage.metadataManager,'SITE')}</example>
+		<function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+		<function-signature>java.lang.String getMetadataProperty(com.scrippsnetworks.wcm.metadata.MetadataManager,java.lang.String)</function-signature>
+	</function>
+
+    <function>
+        <name>getSniTag</name>
+        <description>Gets an SniTag by name</description>
+        <example>${sni:getSniTag('food-sources:fnmagazine')</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.snitag.SniTag getSniTag(java.lang.String,com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+    <!-- Company assets -->
+    <function>
+        <name>getCompany</name>
+        <description>
+            Retrieve company  object that contains all data contained in a company asset node.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.company.Company getCompany(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+
+	<function>
+        <name>getLinkedAssetImagePath</name>
+        <description>Gets a linked asset's image path. In this instance, the imageOverride parameter takes precedence if provided. Otherwise, if the asset is a photo gallery or video page, the associated image will be returned. Null will be returned if no suitable asset is found.</description>
+        <example>${sni:getLinkedAssetImagePath(linkedAssetRes,'/etc/designs/overrideImage.png')}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getLinkedAssetImagePath(org.apache.sling.api.resource.Resource,java.lang.String)</function-signature>
+    </function>
+
+	<function>
+		<name>getIconCssClass</name>
+        <description>Returns the corresponding icon css class for the provided resource. Examples include ss-video and ss-layers.</description>
+        <example>${sni:getIconCssClass(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getIconCssClass(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+
+    <function>
+        <name>getCalendar</name>
+        <description>
+            Gets a calendar object based on a resorce
+        </description>
+        <example>${sni:getCalendar(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.calendar.Calendar getCalendar(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getCalendarSlot</name>
+        <description>
+            Gets a calendar slot object based on a node
+        </description>
+        <example>${sni:getCalendarSlot(calendarNode)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.calendar.CalendarSlot getCalendarSlot(javax.jcr.Node, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+	<function>
+		<name>getCommunityAssetIds</name>
+        <description>Getting all the Recipe/Company/Epsidoe assetIds ,appended by underscore(_)  for esi call to display review summary</description>
+        <example>${sni:getCommunityAssetIds(List)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getCommunityAssetIds(java.util.List)</function-signature>
+    </function>
+    <function>
+        <name>getMapEntry</name>
+        <description>
+            Gets a map entry object based on a resource
+        </description>
+        <example>${sni:getMapEntry(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.map.MapEntry getMapEntry(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getMapObj</name>
+        <description>
+            Gets a map object based on a resource
+        </description>
+        <example>${sni:getMapObj(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.map.MapObj getMapObj(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getValueAndText</name>
+        <description>
+            Gets value and text from property in select component, that divided by =
+        </description>
+        <example>${sni:getValueAndText(valueTextString)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getValueAndTextFromString(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getBurgerNavigation</name>
+        <description>
+            Gets a burger nav object based on a resource
+        </description>
+        <example>${sni:getBurgerNavigation(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.burgernavigation.BurgerNav getBurgerNav(org.apache.sling.api.resource.Resource, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getSuperleadItems</name>
+        <description>
+            Gets list of items for superlead
+        </description>
+        <example>${sni:getSuperleadItems(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.superleadcarousel.SuperleadItem&gt; getSuperleadItems(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getTalentNameFromBio</name>
+        <description>
+            Gets the talent name from a bio page
+        </description>
+        <example>${sni:getTalentNameFromBio(sniBioPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getTalentNameFromBio(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+	<function>
+        <name>pageContainsComponent</name>
+        <description>
+            A method to check if a SniPage contains a component with a provided resource type
+        </description>
+        <example>${sni:pageContainsComponent(sniPage,resType)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>boolean pageContainsComponent(com.scrippsnetworks.wcm.page.SniPage, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getImageUrl</name>
+        <description>
+            Get image url from dampath with rendition
+        </description>
+        <example>${sni:getImageUrl(damPath, rendition, aspect)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getImageUrl(java.lang.String, java.lang.String, java.lang.String, org.apache.sling.api.SlingHttpServletRequest)</function-signature>
+    </function>
+    <function>
+        <name>getImageUrlWithDefaultImage</name>
+        <description>
+            Get image url from dampath with rendition
+        </description>
+        <example>${sni:getImageUrlWithDefaultImage(damPath, rendition, aspect, useDefaultImage)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getImageUrlWithDefaultImage(java.lang.String, java.lang.String, java.lang.String, org.apache.sling.api.SlingHttpServletRequest, boolean)</function-signature>
+    </function>
+    <function>
+        <name>getImageAcrossItems</name>
+        <description>
+            Gets list of items 3 Image Across component
+        </description>
+        <example>${sni:getImageAcrossItems(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.secondary3imageacross.ImageAcross&gt; getImageAcrossItems(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>transformPathToUrl</name>
+        <description>
+            Transform path by adding of html for internal links
+        </description>
+        <example>${sni:transformPathToUrl(path, resourceResolver)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String transformPathToUrl(java.lang.String, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+    <function>
+        <name>getCircleDisplayItems</name>
+        <description>
+            Gets list of items circle display carousel component
+        </description>
+        <example>${sni:getCircleDisplayItems(pageManager, resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.circledisplaycarousel.CircleDisplayItem&gt; getCircleDisplayItems(com.day.cq.wcm.api.PageManager, org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getSelectedDimensionOfFacet</name>
+        <description>
+            Gets a selected dimension at facet
+        </description>
+        <example>${sni:getSelectedDimensionAtFacet(selectedDimensions, facet)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.fnr.sitesearch.Dimension getSelectedDimensionOfFacet(java.util.List, com.scrippsnetworks.wcm.fnr.sitesearch.Facet)</function-signature>
+    </function>
+    <function>
+        <name>getMediaUrl</name>
+        <description>
+            Override path for modal window usage
+        </description>
+        <example>${sni:getMediaUrl(link,resolver,pageNumber)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getMediaUrl(java.lang.String, org.apache.sling.api.resource.ResourceResolver, java.lang.Integer)</function-signature>
+    </function>
+    <function>
+        <name>getMediaUrlWithoutPage</name>
+        <description>
+            Override path for modal window usage
+        </description>
+        <example>${sni:getMediaUrlWithoutPage(link,resolver)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getMediaUrl(java.lang.String, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+    <function>
+        <name>getHighLightingText</name>
+        <description>
+            Get highlighting text
+        </description>
+        <example>${sni:getHighLightingText(text, keywords, highlightedClass)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getHighLightingText(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getDeepLinkVideo</name>
+        <description>
+           Create video deeplink from channel
+        </description>
+        <example>${sni:getDeepLinkVideo(Channel channel, String videoId)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getDeepLinkVideo(com.scrippsnetworks.wcm.video.channel.Channel, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getTargetVideoForMobileChannelPage</name>
+        <description>
+           Get target video for mobile channel page
+        </description>
+        <example>${sni:getTargetVideoForMobileChannelPage(channel,requestPathInfo)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.video.Video getTargetVideoForMobileChannelPage(com.scrippsnetworks.wcm.video.channel.Channel, org.apache.sling.api.request.RequestPathInfo)</function-signature>
+    </function>
+    <function>
+        <name>getUpNextVideos</name>
+        <description>
+           Get target up next videos for mobile channel page
+        </description>
+        <example>${sni:getUpNextVideos(videos, targetVideo)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.video.Video&gt; getUpNextVideos(java.util.List, com.scrippsnetworks.wcm.video.Video)</function-signature>
+    </function>
+    <function>
+        <name>hasSponsorshipSource</name>
+        <description>
+            Verifies if the page has a sponsorship Code.
+        </description>
+        <example>${sni:hasSponsorshipSource(sniPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.video.VideoUtil</function-class>
+        <function-signature>boolean hasSponsorshipSource(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getMetaDataValues</name>
+        <description>
+            Get MetaDataManager Json.
+        </description>
+        <example>${sni:getMetaDataValues(sniPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getMetaDataValues(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getSubNavigation</name>
+        <description>
+            Gets a list from sub navigation based on a resource
+        </description>
+        <example>${sni:getSubNavigation(resource, currentSniPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.subnavigation.impl.SubNavElemImpl&gt; getSubNavList(org.apache.sling.api.resource.Resource, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getSubMenuResource</name>
+        <description>
+            Return sub navigation node or null if this node not exist
+        </description>
+        <example>${sni:getSubMenuResource(currentSniPage, resourceResolver)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>org.apache.sling.api.resource.Resource getSubMenuResource(com.scrippsnetworks.wcm.page.SniPage, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+    <function>
+        <name>getHubMenuPath</name>
+        <description>
+            Return path to hub navigation node or null if this node not exist
+        </description>
+        <example>${sni:getHubMenuPath(currentSniPage, resourceResolver)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getHubMenuPath(com.scrippsnetworks.wcm.page.SniPage, org.apache.sling.api.resource.ResourceResolver)</function-signature>
+    </function>
+    <function>
+        <name>getSecondaryGrid</name>
+        <description>
+            Get Secondary Grid
+        </description>
+        <example>${sni:getSecondaryGrid(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.secondarygrid.SecondaryGrid  getSecondaryGrid(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getSecondaryGridMore</name>
+        <description>
+            Get Secondary Grid  More Items
+        </description>
+        <example>${sni:getSecondaryGridMore(resource,slingRequest)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.secondarygrid.SecondaryGridItem&gt;  getSecondaryGridMore(org.apache.sling.api.resource.Resource, org.apache.sling.api.SlingHttpServletRequest)</function-signature>
+    </function>
+    <function>
+        <name>getHubNavigation</name>
+        <description>
+            Gets a list from hub navigation based on a resource
+        </description>
+        <example>${sni:getHubNavigation(currentSniPage, 4)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.hubnavigation.impl.HubNavElemImpl&gt; getHubNavList(com.scrippsnetworks.wcm.page.SniPage, java.lang.Integer)</function-signature>
+    </function>
+    <function>
+        <name>getGenericOneImage</name>
+        <description>
+            Get Generic One Image
+        </description>
+        <example>${sni:getGenericOneImage(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.generic1image.GenericOneImage getGenericOneImage(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getGenericOneVideo</name>
+        <description>
+            Get Generic One Video
+        </description>
+        <example>${sni:getGenericOneVideo(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.generic1video.GenericOneVideo getGenericOneVideo(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getLeadThreeImage</name>
+        <description>
+            Get Lead Three Image
+        </description>
+        <example>${sni:getLeadThreeImage(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.lead3image.LeadThreeImage getLeadThreeImage(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getSubNavigationFromPage</name>
+        <description>
+            Gets sub navigation list for page
+        </description>
+        <example>${sni:getSubNavigationFromPage(resourceResolver, currentSniPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.subnavigation.impl.SubNavElemImpl&gt; getSubNavListFromPage(org.apache.sling.api.resource.ResourceResolver, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getStackImageItems</name>
+        <description>
+            Gets list of items for stack of lead 1 image scroll
+        </description>
+        <example>${sni:getStackImageItems(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.leadimagewithstack.StackImageItem&gt; getStackImageItems(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getLeadImageItem</name>
+        <description>
+            Gets item for lead 1 image scroll
+        </description>
+        <example>${sni:getLeadImageItem(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.leadimagewithstack.LeadImageItem getLeadImageItem(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getValidSlideCount</name>
+        <description>
+            Gets count of valid items for stack of lead 1 image scroll
+        </description>
+        <example>${sni:getValidSlideCount(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>int getValidSlideCount(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getResourcesFromContainer</name>
+        <description>
+            Gets resources list from container node, which type contains in nodeTypes parameter.
+        </description>
+        <example>${sni:getResourcesFromContainer(containerPath, nodeTypes, resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;org.apache.sling.api.resource.Resource&gt; getResourcesFromContainer(java.lang.String, java.lang.String, org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getHeaderStack</name>
+        <description>
+            Gets get Header Stack page
+        </description>
+        <example>${sni:getHeaderStack(resourceResolver, currentSniPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.headerstack.HeaderStack&gt; getHeaderStack(org.apache.sling.api.resource.ResourceResolver, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getSecondaryBottom</name>
+        <description>
+            Get Secondary Bottom Promo
+        </description>
+        <example>${sni:getSecondaryBottom(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.secondarybottom.SecondaryBottomItem&gt; getSecondaryBottom (org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getPageTitle</name>
+        <description>
+            Get a page title from the provided PageManager and path.
+        </description>
+        <example>${sni:getPageTitle(pageManager, path)</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getPageTitle(com.day.cq.wcm.api.PageManager, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getScheduleWeekDays</name>
+        <description>
+            Gets container of days of selected week
+        </description>
+        <example>${sni:getScheduleWeekDays(slingRequest)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.schedule.WeekDays getScheduleWeekDays(org.apache.sling.api.SlingHttpServletRequest)</function-signature>
+    </function>
+	<function>
+        <name>getVideoPromo</name>
+        <description>
+            Get Video Promo
+        </description>
+        <example>${sni:getVideoPromo(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.videoPromo.VideoPromo  getVideoPromo(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>transformIconClassToMobile</name>
+        <description>Transform desktop icon class to mobile</description>
+        <example>${sni:transformIconClassToMobile(iconClass)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String transformIconClassToMobile(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>replaceHtmlTags</name>
+        <description>Replace tags in text</description>
+        <example>${sni:replaceHtmlTags(text, oldTag, newTag)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String replaceHtmlTags(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getHrefFromLink</name>
+        <description>Get link from text</description>
+        <example>${sni:getHrefFromLink(text)}</example>
+        <function-class>com.scrippsnetworks.wcm.util.HtmlUtil</function-class>
+        <function-signature>java.lang.String getHrefFromLink(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>isValidDamImagePath</name>
+        <description>validate dam path</description>
+        <example>${sni:isValidDamImagePath(resourceResolver, path)}</example>
+        <function-class>com.scrippsnetworks.wcm.util.HtmlUtil</function-class>
+        <function-signature>boolean isValidDamImagePath(org.apache.sling.api.resource.ResourceResolver, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getPositionAdblockInArticleContainer</name>
+        <description>
+            Gets position of ad-block for container node.
+        </description>
+        <example>${sni:getPositionAdblockInArticleContainer(containerPath, resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>int getPositionAdblockInArticleContainer(java.lang.String, org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+    <function>
+        <name>getLeadThreeImageRecipe</name>
+        <description>
+            Gets Lead Three Image
+        </description>
+        <example>${sni:getLeadThreeImageRecipe(searchResponseMap, resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.util.List&lt;com.scrippsnetworks.wcm.mobile.lead3imagerecipe.LeadThreeImageItemRecipe&gt; getLeadThreeImageRecipe(java.util.Map, org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+	<function>
+        <name>getCalculatedDate</name>
+        <description>
+            Gets the date difference based on the input param.
+        </description>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String getCalculatedDate(java.lang.Object)</function-signature>
+    </function>
+    <function>
+        <name>getInheritedProperty</name>
+        <description>
+            Gets property from current page or package anchor
+        </description>
+        <example>${sni:getInheritedProperty(propertyName, page)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>java.lang.String getInheritedProperty(java.lang.String, com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getTaboolaPropertiesByType</name>
+        <description>
+            Return properties for taboola module by type
+        </description>
+        <example>${sni:getTaboolaPropertiesByType(type)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.taboola.TaboolaProperties getTaboolaPropertiesByType(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>encodeXssFunct</name>
+        <description>
+            Encodes a string for HTML element content.
+        </description>
+        <example>${sni:encodeXssFunct(text)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>java.lang.String encodeXssForHtml(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <name>getVideoJSON</name>
+        <description>
+            Return JSON string of video playlist
+        </description>
+        <example>${sni:getVideoJSON(sniPage)}</example>
+        <function-class>com.scrippsnetworks.wcm.taglib.Functions</function-class>
+        <function-signature>String getVideoJSON(com.scrippsnetworks.wcm.page.SniPage)</function-signature>
+    </function>
+    <function>
+        <name>getSecondaryInlineVideo</name>
+        <description>
+            Get secondary inline video
+        </description>
+        <example>${sni:getSecondaryInlineVideo(resource)}</example>
+        <function-class>com.scrippsnetworks.wcm.mobile.taglib.Functions</function-class>
+        <function-signature>com.scrippsnetworks.wcm.mobile.secondaryinline.SecondaryInlineVideo getSecondaryInlineVideo(org.apache.sling.api.resource.Resource)</function-signature>
+    </function>
+</taglib>

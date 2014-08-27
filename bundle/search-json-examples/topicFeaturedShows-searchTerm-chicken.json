@@ -1,0 +1,32 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "AssetUsage": {
+      "ShowList": {
+        "ShowItem": [
+          {
+            "AssetId": "SHOW1735",
+            "ShowName": "Symon's Suppers",
+            "TalentName": "Michael Symon",
+            "TalentUrl": "/michael-symon/index.html",
+            "ShowUrl": "/symons-suppers/index.html"
+          },
+          {
+            "AssetId": "SHOW1337",
+            "ShowName": "Everyday Exotic",
+            "TalentName": "Roger Mooking",
+            "TalentUrl": "/roger-mooking/index.html",
+            "ShowUrl": "/everyday-exotic/index.html"
+          },
+          {
+            "AssetId": "SHOW1353",
+            "ShowName": "Tyler's Ultimate",
+            "TalentName": "Tyler Florence",
+            "TalentUrl": "/tyler-florence/index.html",
+            "ShowUrl": "/tylers-ultimate/index.html"
+          }
+        ]
+      }
+    }
+  }
+}

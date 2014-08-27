@@ -1,0 +1,92 @@
+{
+  "ServiceResponse": {
+    "searchurl": "http://www.cookingchanneltv.com/search/delegate?searchString=chicken&Nr=Record Type:Result&N=504",
+    "baseurl": "http://www.cookingchanneltv.com",
+    "AssetUsage": {
+      "VideoList": {
+        "VideoItem": [
+          {
+            "AssetId": "VIDEO64059",
+            "VideoTitle": "Chicken Kabobs",
+            "VideoUrl": "/videos/chicken-kabobs/64059.html",
+            "VideoDescription": "Savory spiced chicken kabobs will get you chillin' and grillin' year round.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0150/0150857_92x69.jpg",
+            "Length": "03:17"
+          },
+          {
+            "AssetId": "VIDEO89023",
+            "VideoTitle": "Beer Can Chicken",
+            "VideoUrl": "/videos/beer-can-chicken/89023.html",
+            "VideoDescription": "This roasted chicken is made tender with steam from a can of beer.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/9640/96404_92x69.jpg",
+            "Length": "00:03:16"
+          },
+          {
+            "AssetId": "VIDEO54089",
+            "VideoTitle": "Moroccan Roast Chicken Wraps",
+            "VideoUrl": "/videos/moroccan-roast-chicken-wraps/54089.html",
+            "VideoDescription": "Take along these fabulous Moroccan roast chicken wraps on your next picnic.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0139/0139792_92x69.jpg",
+            "Length": "05:48"
+          },
+          {
+            "AssetId": "VIDEO54079",
+            "VideoTitle": "Chicken and Portobello Salad",
+            "VideoUrl": "/videos/chicken-and-portobello-salad/54079.html",
+            "VideoDescription": "Chicken, portobellos and radicchio are the stars of this main-dish salad.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0139/0139782_92x69.jpg",
+            "Length": "03:45"
+          },
+          {
+            "AssetId": "VIDEO64063",
+            "VideoTitle": "Chicken Chow Mein",
+            "VideoUrl": "/videos/chicken-chow-mein/64063.html",
+            "VideoDescription": "Try this version of a takeout favorite and leave yourself a generous tip.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0150/0150863_92x69.jpg",
+            "Length": "03:25"
+          },
+          {
+            "AssetId": "VIDEO54009",
+            "VideoTitle": "Chicken Parmesan",
+            "VideoUrl": "/videos/chicken-parmesan/54009.html",
+            "VideoDescription": "This healthful version of a classic has less cheese but all the flavor.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0139/0139607_92x69.jpg",
+            "Length": "03:34"
+          },
+          {
+            "AssetId": "VIDEO56350",
+            "VideoTitle": "Coconut Chicken Curry",
+            "VideoUrl": "/videos/coconut-chicken-curry/56350.html",
+            "VideoDescription": "Levi makes spicy Martinique coconut chicken curry.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0145/0145363_92x69.jpg",
+            "Length": "03:05"
+          },
+          {
+            "AssetId": "VIDEO54709",
+            "VideoTitle": "Chicken Burgers",
+            "VideoUrl": "/videos/chicken-burgers/54709.html",
+            "VideoDescription": "Chicken burgers with lemongrass and lime make a great hot-climate meal.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0139/0139732_92x69.jpg",
+            "Length": "02:19"
+          },
+          {
+            "AssetId": "VIDEO58461",
+            "VideoTitle": "Spicy South Indian Chicken",
+            "VideoUrl": "/videos/spicy-south-indian-chicken/58461.html",
+            "VideoDescription": "Why did the chicken cross the road? To be part of this spicy comfort dish!",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0146/0146982_92x69.jpg",
+            "Length": "03:22"
+          },
+          {
+            "AssetId": "VIDEO89225",
+            "VideoTitle": "Sticky Balsamic Chicken Wings",
+            "VideoUrl": "/videos/sticky-balsamic-chicken-wings/89225.html",
+            "VideoDescription": "Sticky Balsamic Chicken Wings are guaranteed love-at-first-bite appetizers.",
+            "VideoImgUrl": "http://images.scrippsnetworks.com/up/images/0177/0177779_92x69.jpg",
+            "Length": "00:02:02"
+          }
+        ]
+      }
+    }
+  }
+}

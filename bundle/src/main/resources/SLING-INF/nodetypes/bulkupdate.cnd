@@ -1,0 +1,6 @@
+<sni = 'http://www.scrippsnetworks.com/ns/1.0/'>
+
+[sni:BulkUpdate] > nt:hierarchyNode
+ - paths (String) mandatory multiple
+ - removeProperties (String) multiple
+ + updates (nt:base) = nt:unstructured

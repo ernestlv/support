@@ -1,0 +1,38 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "servicename": "TopTechniques",
+    "querystring": "chicken",
+    "AssetUsage": {
+      "TopicList": {
+        "Topic": [
+          {
+            "TopicName": "Baking",
+            "TopicTitle": "Baking",
+            "TopicUrl": "/topics/baking/index.html"
+          },
+          {
+            "TopicName": "Simmer",
+            "TopicTitle": "Simmer",
+            "TopicUrl": "/topics/simmer/index.html"
+          },
+          {
+            "TopicName": "Saute",
+            "TopicTitle": "Saute",
+            "TopicUrl": "/topics/saute/index.html"
+          },
+          {
+            "TopicName": "Roasting",
+            "TopicTitle": "Roasting",
+            "TopicUrl": "/topics/roasting/index.html"
+          },
+          {
+            "TopicName": "Deep Frying",
+            "TopicTitle": "Deep Frying",
+            "TopicUrl": "/topics/deep-frying/index.html"
+          }
+        ]
+      }
+    }
+  }
+}

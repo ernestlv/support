@@ -1,0 +1,339 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "servicename": "FilterByTopic",
+    "querystring": "chicken-all-0,10,all.xml",
+    "AssetUsage": {
+      "FilterList": {
+        "Filter": [
+          {
+            "FilterTitle": "All",
+            "FilterCount": "962",
+            "FilterDisplayName": "All"
+          },
+          {
+            "FilterTitle": "Main Dish",
+            "FilterCount": "555",
+            "FilterDisplayName": "Main Dish"
+          },
+          {
+            "FilterTitle": "Dinner",
+            "FilterCount": "297",
+            "FilterDisplayName": "Dinner"
+          },
+          {
+            "FilterTitle": "Poultry",
+            "FilterCount": "243",
+            "FilterDisplayName": "Poultry"
+          },
+          {
+            "FilterTitle": "Meat",
+            "FilterCount": "166",
+            "FilterDisplayName": "Meat"
+          },
+          {
+            "FilterTitle": "Lunch",
+            "FilterCount": "157",
+            "FilterDisplayName": "Lunch"
+          },
+          {
+            "FilterTitle": "Vegetables",
+            "FilterCount": "145",
+            "FilterDisplayName": "Vegetables"
+          },
+          {
+            "FilterTitle": "Simmer",
+            "FilterCount": "143",
+            "FilterDisplayName": "Simmer"
+          },
+          {
+            "FilterTitle": "Tomato",
+            "FilterCount": "131",
+            "FilterDisplayName": "Tomato"
+          },
+          {
+            "FilterTitle": "American",
+            "FilterCount": "114",
+            "FilterDisplayName": "American"
+          }
+        ]
+      },
+      "SearchResultList": {
+        "Recipe": [
+          {
+            "AssetId": "RECIPE473847",
+            "Title": "Bal's No-Butter Chicken",
+            "Courtesy": "Recipe courtesy Bal Arneson",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/yogurt/index.html",
+                  "-DisplayName": "Yogurt "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/indian/index.html",
+                "-DisplayName": "Indian "
+              }
+            },
+            "Time": "27 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/bals-no-butter-chicken-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/06/17/CCSPG108_No-Butter-Chicken_s4x3_med.jpg",
+            "TalentUrl": "/bal-arneson/index.html"
+          },
+          {
+            "AssetId": "RECIPE513261",
+            "Title": "Exploding Chicken Taquitos",
+            "Courtesy": "2010 Hungry Girl. All Rights Reserved.",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/cheese/index.html",
+                  "-DisplayName": "Cheese "
+                },
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                }
+              ]
+            },
+            "Time": "50 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/lisa-lillien/exploding-chicken-taquitos-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/12/02/CCHGL108_Exploding-Chicken-Taquitos_s4x3_med.jpg"
+          },
+          {
+            "AssetId": "RECIPE468700",
+            "Title": "Chicken Chow Mein",
+            "Courtesy": "Recipe courtesy Ching-He Huang, 2008",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/noodles/index.html",
+                  "-DisplayName": "Noodles "
+                },
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/vegetables/index.html",
+                  "-DisplayName": "Vegetables "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/chinese/index.html",
+                "-DisplayName": "Chinese "
+              }
+            },
+            "Time": "30 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/ching-he-huang/chicken-chow-mein-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/12/06/CC-ching-he-huang_chicken-chow-mein-recipe_s4x3_med.jpg"
+          },
+          {
+            "AssetId": "RECIPE606191",
+            "Title": "Roasted Chicken with Salsa Verde",
+            "Courtesy": "Recipe courtesy Michael Symon",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/lemon/index.html",
+                  "-DisplayName": "Lemon "
+                },
+                {
+                  "-Link": "/topics/arugula/index.html",
+                  "-DisplayName": "Arugula "
+                }
+              ]
+            },
+            "Time": "10 hrs 50 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/michael-symon/roasted-chicken-with-salsa-verde-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/12/21/CCCLC104_Roasted-Chicken-with-Salsa-Verde-Recipe_s4x3_med.jpg"
+          },
+          {
+            "AssetId": "RECIPE470139",
+            "Title": "Chicken Parmesan",
+            "Courtesy": "2008, Ellie Krieger, All Rights Reserved",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/cheese/index.html",
+                  "-DisplayName": "Cheese "
+                },
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/mozzarella/index.html",
+                  "-DisplayName": "Mozzarella "
+                },
+                {
+                  "-Link": "/topics/parmigianino/index.html",
+                  "-DisplayName": "Parmigianino "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/italian/index.html",
+                "-DisplayName": "Italian "
+              }
+            },
+            "Time": "57 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/ellie-krieger/chicken-parmesan-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/12/06/CC-ellie-krieger_chicken-parmesan-recipe_s4x3_med.jpg",
+            "TalentUrl": "/ellie-krieger/index.html"
+          },
+          {
+            "AssetId": "RECIPE473883",
+            "Title": "Chicken South Indian Style",
+            "Courtesy": "Recipe courtesy Bal Arneson",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/coconut/index.html",
+                  "-DisplayName": "Coconut "
+                },
+                {
+                  "-Link": "/topics/tomato/index.html",
+                  "-DisplayName": "Tomato "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/indian/index.html",
+                "-DisplayName": "Indian "
+              }
+            },
+            "Time": "30 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/chicken-south-indian-style-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/06/17/CCSPG109_South-Indian-Chicken_s4x3_med.jpg",
+            "TalentUrl": "/bal-arneson/index.html"
+          },
+          {
+            "AssetId": "RECIPE500397",
+            "Title": "Roasted Chicken with Lemon, Garlic, and Thyme",
+            "Courtesy": "Recipe courtesy Kelsey Nixon",
+            "IngredientList": {
+              "Name": {
+                "-Link": "/topics/chicken/index.html",
+                "-DisplayName": "Chicken "
+              }
+            },
+            "Time": "1 hr 45 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/kelsey-nixon/roasted-chicken-with-lemon-garlic-and-thyme-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/10/21/CCKEL102L_Roasted-Chicken-with-Lemon-Garlic-and-Thyme_s4x3_med.jpg",
+            "TalentUrl": "/kelsey-nixon/index.html"
+          },
+          {
+            "AssetId": "RECIPE598262",
+            "Title": "Chicken and White Bean Chili",
+            "Courtesy": "Recipe courtesy Good Housekeeping Drop 5 lbs",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/beans-legumes/index.html",
+                  "-DisplayName": "Beans / Legumes "
+                }
+              ]
+            },
+            "Time": "45 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/chicken-and-white-bean-chili-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/12/06/CCDRP103_Chicken-and-White-Bean-Chili-Recipe_s4x3_med.jpg"
+          },
+          {
+            "AssetId": "RECIPE562419",
+            "Title": "Three Cup Chicken with Garlic Spinach",
+            "Courtesy": "Recipe courtesy Ching-He Huang, 2010",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/rice/index.html",
+                  "-DisplayName": "Rice "
+                },
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/spinach/index.html",
+                  "-DisplayName": "Spinach "
+                }
+              ]
+            },
+            "CuisineList": {
+              "Name": {
+                "-Link": "/topics/chinese/index.html",
+                "-DisplayName": "Chinese "
+              }
+            },
+            "Time": "50 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/ching-he-huang/three-cup-chicken-with-garlic-spinach-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/08/04/CCECC101_Three-Cup-Chicken-with-Garlic-Spinach_s4x3_med.jpg",
+            "TalentUrl": "/ching-he-huang/index.html"
+          },
+          {
+            "AssetId": "RECIPE494389",
+            "Title": "Butter Roasted Chicken with Roasted Vegetables",
+            "Courtesy": "Recipe courtesy Laura Calder",
+            "IngredientList": {
+              "Name": [
+                {
+                  "-Link": "/topics/chicken/index.html",
+                  "-DisplayName": "Chicken "
+                },
+                {
+                  "-Link": "/topics/vegetables/index.html",
+                  "-DisplayName": "Vegetables "
+                }
+              ]
+            },
+            "Time": "2 hrs 35 mins",
+            "Level": "Easy",
+            "RecipeUrl": "/recipes/laura-calder/butter-roasted-chicken-with-roasted-vegetables-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/09/28/CCFFA205_Butter-Roasted-Chicken_s4x3_med.jpg",
+            "TalentUrl": "/laura-calder/index.html"
+          }
+        ]
+      },
+      "SearchResultTotalCount": "962",
+      "Topic": "Chicken ",
+      "SubTopic": "All ",
+      "Offset": "0",
+      "NumOfRecords": "10",
+      "SortBy": "All ",
+      "ReturnedRecords": "10",
+      "PaginationCount": "962"
+    }
+  }
+}

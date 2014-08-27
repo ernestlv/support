@@ -1,0 +1,60 @@
+{
+  "ServiceResponse": {
+    "servicename": "PackageSimilarRecipes",
+    "querystring": "CC12_HEALTHY_EATINGFRESH",
+    "AssetUsage": {
+      "Asset": {
+        "moduleType": "Similar_Recipes_Style",
+        "moduleNum": "1",
+        "zone": "Similar_Recipes_Zone",
+        "packageName": "Healthy Eating",
+        "packageUrl": "http://www.cookingchanneltv.com/fresh-start-healthy-eating/package/index.html",
+        "packageBannerImage": "http://cooktv.sndimg.com/COOK/2011/12/19/CC-packageReel_Drop-5-Lbs_s214x69.jpg",
+        "links": {
+          "linkItem": [
+            {
+              "RecipeTitle": "How To Get Started",
+              "RecipeUrl": "http://www.cookingchanneltv.com/fresh-start-healthy-eating/package/index.html",
+              "RecipeImage": "http://cooktv.sndimg.com/COOK/2011/12/21/CCDRP_Melissa-DArabian-06_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Don't Skip Breakfast",
+              "RecipeUrl": "http://www.cookingchanneltv.com/recipes/healthy-breakfast-recipes/pictures/index.html",
+              "RecipeImage": "http://img.foodnetwork.com/FOOD/2011/11/21/CC-Bobby-Deen_Healthy-Blueberry-Almond-Griddle-Cakes_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Slim Down Your Faves",
+              "RecipeUrl": "http://www.cookingchanneltv.com/healthy-foods-diet/package/index.html",
+              "RecipeImage": "http://img.foodnetwork.com/FOOD/2011/12/06/CC-ellie-krieger_chicken-parmesan-recipe_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Steal Mama's Recipe Book",
+              "RecipeUrl": "http://www.cookingchanneltv.com/not-my-mamas-meals/index.html",
+              "RecipeImage": "http://cooktv.sndimg.com/COOK/2011/12/19/CCNMM102_Bobby-Deen-and-Paula-Deen_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Lighten Up Your Desserts",
+              "RecipeUrl": "http://www.cookingchanneltv.com/recipes/low-calorie-dessert-recipes/pictures/index.html",
+              "RecipeImage": "http://cooktv.sndimg.com/COOK/2010/12/02/CCHGL105_Chocolate-Marshmallow-Madness-Cupcakes_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Eat Healthier Italian",
+              "RecipeUrl": "http://www.cookingchanneltv.com/recipes/healthy-italian-recipes/pictures/index.html",
+              "RecipeImage": "http://img.foodnetwork.com/FOOD/2011/11/21/CC-Bobby-Deen_Healthy-Bobbys-Southwestern-Style-Pizza_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Get More Superfoods",
+              "RecipeUrl": "http://www.cookingchanneltv.com/recipes/superfoods-nutrient-rich-foods-to-eat-every-day/pictures/index.html",
+              "RecipeImage": "http://cooktv.sndimg.com/COOK/2011/12/20/CC-Superfoods_avocado_s4x3_sm.jpg"
+            },
+            {
+              "RecipeTitle": "Keep It Fresh",
+              "RecipeUrl": "http://www.cookingchanneltv.com/quick-easy-healthy-recipes/package/index.html",
+              "RecipeImage": "http://img.foodnetwork.com/FOOD/2011/05/10/CCMIN111_Winter-Citrus-Salad-with-Honey-Dressing_s4x3_sm.jpg"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

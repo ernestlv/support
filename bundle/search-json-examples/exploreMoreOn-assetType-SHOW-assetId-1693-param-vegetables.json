@@ -1,0 +1,33 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "servicename": "ExploreMoreOn",
+    "querystring": "vegetables",
+    "AssetUsage": {
+      "TopicList": {
+        "Topic": [
+          {
+            "TopicTitle": "Main Dish ",
+            "TopicUrl": "/topics/main-dish/index.html"
+          },
+          {
+            "TopicTitle": "Asparagus ",
+            "TopicUrl": "/topics/asparagus/index.html"
+          },
+          {
+            "TopicTitle": "Grilling ",
+            "TopicUrl": "/topics/grilling/index.html"
+          },
+          {
+            "TopicTitle": "Onion ",
+            "TopicUrl": "/topics/onion/index.html"
+          },
+          {
+            "TopicTitle": "Side Dish ",
+            "TopicUrl": "/topics/side-dish/index.html"
+          }
+        ]
+      }
+    }
+  }
+}

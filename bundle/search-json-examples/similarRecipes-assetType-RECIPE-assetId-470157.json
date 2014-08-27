@@ -1,0 +1,20 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "servicename": "NextRecipe",
+    "querystring": "RECIPE470157",
+    "AssetUsage": {
+      "RecipeList": {
+        "Recipe": {
+          "AssetId": "RECIPE614304",
+          "RecipeTitle": "Heart-Shaped Chocolate Raspberry Cakes",
+          "RecipeUrl": "/recipes/heart-shaped-chocolate-raspberry-cakes-recipe/index.html",
+          "ImageUrl": "http://img.foodnetwork.com/FOOD/2012/02/07/CC-Devour-Francois_heart-shaped-chocolate-raspberry-cakes-09_s4x3_sm.jpg",
+          "Rating": "-9223372036854775808",
+          "RatingUrl": "http://images.foodnetwork.com/webfood/search/images/null_stars.gif",
+          "ReviewUrl": "/recipes/heart-shaped-chocolate-raspberry-cakes-recipe/reviews/index.html"
+        }
+      }
+    }
+  }
+}

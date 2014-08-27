@@ -1,0 +1,5 @@
+<crxdao = 'http://www.scrippsnetworks.com/crxdao/ns/1.0/'>
+
+[crxdao:Tracked]
+mixin
+ + crxdao:meta (nt:base) = nt:unstructured

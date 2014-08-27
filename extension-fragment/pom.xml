@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>sni-wcm-support-bundle-reactor</artifactId>
+        <groupId>com.scrippsnetworks.wcm</groupId>
+        <version>4.0.43-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.scrippsnetworks.wcm</groupId>
+    <artifactId>sni-wcm-support-bundle-extension-fragment</artifactId>
+    <packaging>jar</packaging>
+    <name>System Bundle Extension</name>
+    <description>
+    This bundle extends the System Bundle export
+    list with the com.sun.xml.* package such
+    that OSGi bundles may refer to Sun's implementation.
+    </description>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <forceCreation>true</forceCreation>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        <manifestEntries>
+                            <Export-Package>
+                                com.sun.xml,
+                                com.sun.xml.internal,
+                                com.sun.xml.internal.bind,
+                                com.sun.xml.internal.bind.api,
+                                com.sun.xml.internal.bind.api.impl,
+                                com.sun.xml.internal.bind.v2,
+                                com.sun.xml.internal.bind.marshaller,
+                                com.sun.xml.internal.bind.unmarshaller
+                            </Export-Package>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>1.4.3</version>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Category>fragment</Bundle-Category>
+                        <Fragment-Host>system.bundle; extension:=framework</Fragment-Host>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

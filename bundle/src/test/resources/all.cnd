@@ -1,0 +1,1008 @@
+<'xmp'='http://ns.adobe.com/xap/1.0/'>
+<'nt'='http://www.jcp.org/jcr/nt/1.0'>
+<'slingevent'='http://sling.apache.org/jcr/event/1.0'>
+<'mix'='http://www.jcp.org/jcr/mix/1.0'>
+<'sling'='http://sling.apache.org/jcr/sling/1.0'>
+<'crx'='http://www.day.com/crx/1.0'>
+<'jcr'='http://www.jcp.org/jcr/1.0'>
+<'dam'='http://www.day.com/dam/1.0'>
+<'cq'='http://www.day.com/jcr/cq/1.0'>
+<'crxde'='http://www.day.com/jcr/crxde/1.0'>
+<'vlt'='http://www.day.com/jcr/vault/1.0'>
+<'wiki'='http://www.day.com/jcr/wiki/1.0'>
+<'crxdao'='http://www.scrippsnetworks.com/crxdao/ns/1.0/'>
+<'sni'='http://www.scrippsnetworks.com/ns/1.0/'>
+<'wci'='http://www.scrippsnetworks.com/wci/ns/1.0/'>
+<'rdf'='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+<'rep'='internal'>
+
+[xmp:Property] > nt:unstructured
+  orderable
+  - namespace (string)
+  + * (xmp:Property)
+  + value (xmp:Simple)
+
+[xmp:Simple] > nt:unstructured
+  orderable
+
+[xmp:Struct] > nt:unstructured
+  orderable
+
+[slingevent:Event] > nt:hierarchyNode, nt:unstructured
+  orderable
+  - slingevent:topic (string)
+  - slingevent:created (date)
+  - slingevent:application (string)
+  - slingevent:properties (binary)
+
+[slingevent:Job] > mix:lockable, slingevent:Event
+  orderable
+  - slingevent:id (string)
+  - slingevent:processor (string)
+  - slingevent:finished (date)
+
+[slingevent:TimedEvent] > mix:lockable, slingevent:Event
+  orderable
+  - slingevent:id (string)
+  - slingevent:date (date)
+  - slingevent:period (long)
+  - slingevent:expression (string)
+  - slingevent:processor (string)
+
+[sling:Folder] > nt:folder
+  - * (undefined)
+  - * (undefined) multiple
+  + * (nt:base) = sling:Folder version
+
+[sling:HierarchyNode] > nt:hierarchyNode
+  mixin
+
+[sling:Mapping] > nt:hierarchyNode, sling:MappingSpec, sling:Resource
+  orderable
+  + * (nt:base) = sling:Mapping version
+
+[sling:MappingSpec]
+  mixin
+  - sling:internalRedirect (string)
+  - sling:match (string)
+  - sling:internalRedirect (string) multiple
+  - sling:status (long)
+  - sling:redirect (string)
+
+[sling:Message]
+  mixin
+  - sling:key (string)
+  - sling:message (undefined)
+
+[sling:MessageEntry] > nt:hierarchyNode, sling:Message
+
+[sling:OrderedFolder] > sling:Folder
+  orderable
+  + * (nt:base) = sling:OrderedFolder version
+
+[sling:OsgiConfig] > nt:hierarchyNode, nt:unstructured
+  orderable
+
+[sling:Redirect] > sling:Resource
+  mixin
+  - sling:target (undefined)
+
+[sling:Resource]
+  mixin
+  - sling:resourceType (string)
+
+[sling:ResourceAlias]
+  mixin
+  - sling:alias (string) multiple
+  - sling:alias (string)
+
+[sling:ResourceSuperType]
+  mixin
+  - sling:resourceSuperType (string)
+
+[sling:VanityPath]
+  mixin
+  - sling:vanityPath (string) multiple
+  - sling:redirectStatus (long)
+  - sling:vanityOrder (long)
+  - sling:redirect (boolean)
+
+[sling:bgJobData]
+  mixin
+
+[crx:DeclaredTypeFilter] > crx:ItemFilter
+  orderable
+  - crx:type (name) = 'nt:base' mandatory autocreated
+
+[crx:HierarchyFilter] > crx:ItemFilter
+  orderable
+  - crx:type (string) = 'descendant-or-self' mandatory autocreated < 'ancestor', 'ancestor-or-self', 'child', 'child-or-self', 'descendant', 'descendant-or-self', 'self'
+  - crx:path (path) = '/' mandatory autocreated
+
+[crx:ItemFilter]
+  orderable
+  - crx:allow (boolean) = 'false' mandatory autocreated
+  + * (crx:ItemFilter)
+
+[crx:NodeTypeFilter] > crx:ItemFilter
+  orderable
+  - crx:type (name) = 'nt:base' mandatory autocreated
+
+[crx:NodeTypeRequestMapping] > crx:RequestMapping
+  - crx:nodeType (name) mandatory
+
+[crx:OPVValueFilter] > crx:ItemFilter
+  orderable
+  - crx:opvValue (string) = 'VERSION' mandatory < 'COPY', 'VERSION', 'INITIALIZE', 'COMPUTE', 'IGNORE', 'ABORT'
+
+[crx:PathRequestMapping] > crx:RequestMapping
+  - crx:pattern (string) mandatory
+
+[crx:RequestMapping]
+  - crx:path (string) mandatory
+  - crx:includeProperties (boolean) = 'false' mandatory
+
+[crx:ResourceBundle]
+  - * (string)
+
+[crx:XPathFilter] > crx:ItemFilter
+  orderable
+  - crx:pattern (string) mandatory
+
+[crx:XmlCharacterData] > crx:XmlNode
+  orderable
+  - jcr:xmlcharacters (string)
+
+[crx:XmlDocument] > crx:XmlNode
+  orderable
+  + * (crx:XmlElement) = crx:XmlElement version
+  + crx:xmlpi (crx:XmlProcessingInstruction) = crx:XmlProcessingInstruction multiple version
+  + crx:xmlcomment (crx:XmlCharacterData) = crx:XmlCharacterData multiple version
+
+[crx:XmlElement] > crx:XmlNode
+  orderable
+  - * (string)
+  + * (crx:XmlElement) = crx:XmlElement multiple version
+  + crx:xmlcdata (crx:XmlCharacterData) = crx:XmlCharacterData multiple version
+  + crx:xmlpi (crx:XmlProcessingInstruction) = crx:XmlProcessingInstruction multiple version
+  + crx:xmlcomment (crx:XmlCharacterData) = crx:XmlCharacterData multiple version
+  + jcr:xmltext (crx:XmlCharacterData) = crx:XmlCharacterData multiple version
+
+[crx:XmlNode]
+  orderable
+
+[crx:XmlProcessingInstruction] > crx:XmlNode
+  orderable
+  - crx:target (string)
+  - jcr:xmlcharacters (string)
+
+[dam:Asset] > nt:hierarchyNode
+  primaryitem jcr:content
+  + jcr:content (dam:AssetContent) = dam:AssetContent
+  + * (nt:base) = nt:base version
+
+[dam:AssetContent] > cq:OwnerTaggable, cq:ReplicationStatus, nt:unstructured, sling:Resource
+  orderable
+  + metadata (nt:unstructured)
+  + renditions (nt:folder)
+
+[dam:Thumbnails]
+  mixin
+  + dam:thumbnails (nt:folder)
+
+[cq:ApplicationPrivilege]
+  mixin
+
+[cq:AuditEvent]
+  - * (undefined)
+  - cq:properties (binary)
+  - cq:category (string)
+  - cq:time (date)
+  - cq:path (string)
+  - * (undefined) multiple
+  - cq:type (string)
+  - cq:userid (string)
+  + * (nt:base) = nt:base multiple version
+
+[cq:BlueprintAction] > nt:unstructured
+  orderable
+
+[cq:BlueprintSyncConfig] > nt:unstructured
+  orderable
+  - cq:rolloutConfigs (string) multiple
+
+[cq:Calendar] > mix:title, sling:Resource
+  mixin
+
+[cq:CalendarComponent] > cq:GeoLocation, cq:OwnerTaggable, mix:created, mix:lastModified, mix:title, nt:unstructured
+  orderable
+  - resources (string) multiple
+  - class (string)
+  - url (string)
+  - localLastImportMD5 (string)
+  - isDate (boolean)
+  - start (date)
+  - priority (long)
+  - stamp (date)
+  - recurrenceOf (path)
+  - timeZone (string)
+  - remoteLastImportMD5 (string)
+  - location (string)
+  - uid (string)
+  - sequence (long)
+  - status (string)
+  - attachments (string) multiple
+  - contact (string)
+  + organizer (nt:base) = nt:unstructured
+  + alarms (nt:base) = nt:unstructured
+  + attendees (nt:base) = nt:unstructured
+  + recurrence (nt:base) = cq:CalendarRecurrence
+  + comments (nt:base) = nt:unstructured
+  + attachments (nt:folder) = nt:folder
+
+[cq:CalendarEvent] > cq:CalendarComponent
+  orderable
+  - transparent (boolean)
+  - end (date)
+
+[cq:CalendarRecurrence] > nt:unstructured
+  orderable
+  - dates (date) multiple
+  - periods (date) multiple
+  - exceptions (date) multiple
+  + rule (nt:unstructured) = cq:CalendarRecurrenceRule
+  + * (nt:unstructured) = cq:CalendarRecurrenceRule
+
+[cq:CalendarRecurrenceRule] > nt:unstructured
+  orderable
+  - byWeekNr (long) multiple
+  - bySecond (long) multiple
+  - byWeekDayOffset (long) multiple
+  - until (date)
+  - weekStart (string) < 'SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'
+  - frequency (string) < 'yearly', 'monthly', 'weekly', 'daily', 'hourly', 'minutely', 'secondly'
+  - byMonthDay (long) multiple
+  - byMonth (long) multiple
+  - bySetPos (long) multiple
+  - interval (long)
+  - byHour (long) multiple
+  - byWeekDay (string) multiple < 'SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'
+  - byYearDay (long) multiple
+  - byMinute (long) multiple
+  - count (long)
+
+[cq:ClientLibraryFolder] > sling:Folder
+  - dependencies (string) multiple
+  - categories (string) multiple
+  - embed (string) multiple
+  - channels (string) multiple
+
+[cq:Comment] > mix:created, mix:language, mix:title, nt:unstructured
+  orderable
+  - userAgent (string)
+  - referer (string)
+  - email (string)
+  - authorizableId (string)
+  - userIdentifier (string)
+  - url (string)
+  - ip (string)
+
+[cq:Component] > mix:title, nt:folder, sling:ResourceSuperType
+  - cq:noDecoration (boolean)
+  - dialogPath (string)
+  - allowedChildren (string) multiple
+  - cq:isContainer (boolean)
+  - * (undefined)
+  - allowedParents (string) multiple
+  - * (undefined) multiple
+  - componentGroup (string)
+  - cq:cellName (string)
+  + dialog (nt:base) = nt:unstructured
+  + cq:htmlTag (nt:base) = nt:unstructured
+  + design_dialog (nt:base) = nt:unstructured
+  + * (nt:base) = nt:base multiple version
+  + cq:infoProviders (nt:base) = nt:unstructured
+  + icon.png (nt:file)
+  + cq:editConfig (cq:EditConfig) = cq:EditConfig
+  + cq:childEditConfig (cq:EditConfig) = cq:EditConfig
+  + virtual (nt:base) = sling:Folder
+  + thumbnail.png (nt:file)
+
+[cq:ComponentExtractorSource]
+  mixin
+
+[cq:ComponentMixin] > cq:Component
+  mixin
+
+[cq:Console] > mix:title, sling:VanityPath
+  mixin
+
+[cq:ContentSyncConfig] > sling:Folder
+
+[cq:ContentSyncHash]
+  mixin
+  - md5 (string)
+
+[cq:Cq4ContentPage]
+  mixin
+  - cq:csd (string) mandatory
+  + cq:attributes (cq:Cq4PageAttributes) = cq:Cq4PageAttributes
+
+[cq:Cq4PageAttributes]
+  - csd (string) mandatory
+  - * (string)
+  - timestampe (long) mandatory
+  - created (long) mandatory
+
+[cq:Dialog] > cq:Widget
+  orderable
+
+[cq:DropTargetConfig] > nt:unstructured
+  orderable
+  - groups (string) multiple
+  - propertyName (string)
+  - accept (string) multiple
+  + parameters (nt:base) = nt:unstructured
+
+[cq:EditConfig] > nt:hierarchyNode, nt:unstructured
+  orderable
+  - cq:emptyText (string)
+  - cq:dialogMode (string) < 'auto', 'floating', 'inline'
+  - cq:layout (string) < 'editbar', 'rollover', 'auto'
+  - cq:inherit (boolean)
+  - cq:actions (string) multiple
+  + cq:actionConfigs (nt:base) = nt:unstructured
+  + cq:inplaceEditing (cq:InplaceEditingConfig) = cq:InplaceEditingConfig
+  + cq:listeners (nt:base) = cq:EditListenersConfig
+  + cq:formParameters (nt:base) = nt:unstructured
+  + cq:dropTargets (nt:base) = nt:unstructured
+
+[cq:EditListenersConfig]
+  - afteredit (string)
+  - aftermove (string)
+  - afterremove (string)
+  - afterinsert (string)
+  - * (undefined)
+  - afterdelete (string)
+  - * (undefined) multiple
+  - aftercreate (string)
+  + * (nt:base) = nt:base multiple version
+
+[cq:Field] > cq:Widget
+  orderable
+  - fieldLabel (string)
+  - ignoreData (boolean)
+  - value (string)
+
+[cq:FrozenReport] > nt:unstructured
+  orderable primaryitem jcr:content
+  - snapshotRunner (string) mandatory
+  + jcr:content (nt:base) = nt:unstructured
+
+[cq:GeoLocation]
+  mixin
+  - latitude (double)
+  - longitude (double)
+
+[cq:InplaceEditingConfig] > nt:unstructured
+  orderable
+  - editorType (string)
+  - configPath (string)
+  - active (boolean)
+  + config (nt:unstructured) = nt:unstructured
+
+[cq:LiveRelationship]
+  mixin
+  - cq:lastRolledout (date)
+  - cq:lastRolledoutBy (string)
+
+[cq:LiveSync] > cq:LiveRelationship
+  orderable mixin
+  + * (cq:LiveSyncAction) = cq:LiveSyncAction
+  + cq:LiveSyncConfig (nt:base) = cq:LiveSyncConfig
+
+[cq:LiveSyncAction] > nt:unstructured
+  orderable
+
+[cq:LiveSyncCancelled] > cq:LiveRelationship
+  mixin
+  - cq:isCancelledForChildren (boolean)
+
+[cq:LiveSyncConfig]
+  - cq:isDeep (boolean)
+  - cq:master (string) mandatory
+  - cq:rolloutConfigs (string) multiple
+  - cq:trigger (string)
+
+[cq:OrTab]
+  - nodeId (string)
+  - workflowId (string)
+
+[cq:OwnerTaggable] > cq:Taggable
+  mixin
+
+[cq:Page] > nt:hierarchyNode
+  orderable primaryitem jcr:content
+  + jcr:content (nt:base) = nt:unstructured
+  + * (nt:base) = nt:base version
+
+[cq:PageContent] > cq:OwnerTaggable, cq:ReplicationStatus, mix:created, mix:title, nt:unstructured, sling:Resource, sling:VanityPath
+  orderable
+  - cq:lastModified (date)
+  - pageTitle (string)
+  - cq:template (string)
+  - offTime (date)
+  - cq:lastModifiedBy (string)
+  - hideInNav (boolean)
+  - onTime (date)
+  - jcr:language (string)
+  - cq:allowedTemplates (string) multiple
+  - cq:designPath (string)
+  - navTitle (string)
+
+[cq:Panel] > cq:Widget
+  orderable
+
+[cq:Payload]
+  - jcr:url (string)
+  - binary (binary)
+  - * (undefined)
+  - * (undefined) multiple
+  - uuid (string)
+  - javaObject (string)
+  - path (path)
+
+[cq:PollConfig]
+  mixin
+  - target (string)
+  - enabled (boolean)
+  - source (string) mandatory
+  - interval (long)
+
+[cq:PollConfigFolder] > cq:PollConfig, sling:Folder
+
+[cq:PrivilegeAce]
+  - deny (boolean)
+  - path (string) mandatory
+
+[cq:PrivilegeAcl] > cq:ApplicationPrivilege
+  orderable mixin
+  - cq:isPathDependent (boolean)
+  + * (cq:PrivilegeAce) = cq:PrivilegeAce
+
+[cq:ProcessStack]
+  - containerWorkflowNodeId (string)
+  - containerWorkflowModelId (string)
+  - workflowId (string)
+  - containerWorkflowEndNodeId (string)
+
+[cq:PropertyLiveSyncCancelled] > cq:LiveRelationship
+  mixin
+  - cq:propertyInheritanceCancelled (string) multiple
+
+[cq:PseudoPage]
+  mixin
+
+[cq:Rating] > cq:Comment
+  orderable
+  - rating (double)
+
+[cq:ReplicationStatus]
+  mixin
+  - cq:lastReplicatedBy (string) ignore
+  - cq:lastPublished (date) ignore
+  - cq:lastPublishedBy (string) ignore
+  - cq:lastReplicationStatus (string) ignore
+  - cq:lastReplicationAction (string) ignore
+  - cq:lastReplicated (date) ignore
+
+[cq:TabPanel] > cq:Panel
+  orderable
+  - activeTab (long)
+
+[cq:Tag] > mix:title, nt:hierarchyNode
+  orderable
+  - * (undefined) multiple
+  - sling:resourceType (string) = 'cq/tagging/components/tag' mandatory autocreated
+  - * (undefined)
+  + * (nt:base) = cq:Tag version
+
+[cq:Taggable]
+  mixin
+  - cq:tags (string) multiple
+
+[cq:Template] > mix:title, nt:hierarchyNode
+  - * (undefined) multiple
+  - allowedChildren (string) multiple
+  - ranking (long)
+  - allowedParents (string) multiple
+  - * (undefined)
+  + thumbnail.png (nt:file)
+  + workflows (nt:base)
+  + * (nt:base) = nt:base multiple version
+  + jcr:content (nt:base)
+  + icon.png (nt:file)
+
+[cq:Trackback] > mix:created, mix:language, mix:title, nt:unstructured
+  orderable
+
+[cq:VirtualComponent] > mix:title, nt:folder
+  - componentGroup (string)
+  - * (undefined) multiple
+  - allowedParents (string) multiple
+  - * (undefined)
+  - allowedChildren (string) multiple
+  + icon.png (nt:file)
+  + cq:editConfig (cq:EditConfig) = cq:EditConfig
+  + thumbnail.png (nt:file)
+  + * (nt:base) = nt:base multiple version
+
+[cq:Wait]
+  - workflowId (string)
+  - destNodeId (string)
+  - fromNodeId (string)
+
+[cq:Widget] > nt:unstructured
+  orderable
+  - name (string)
+  - xtype (string)
+  - title (string)
+  + items (nt:base) = cq:WidgetCollection
+
+[cq:WidgetCollection] > nt:unstructured
+  orderable
+  + * (cq:Widget) = cq:Widget
+
+[cq:WorkItem]
+  - startTime (date)
+  - assignee (string)
+  - sling:resourceType (string) = 'cq/workflow/components/workitem' mandatory autocreated
+  - endTime (date)
+  - workflowId (string)
+  - nodeId (string)
+  - dueTime (date)
+  + metaData (nt:unstructured)
+
+[cq:Workflow] > mix:referenceable
+  - initiator (string)
+  - * (undefined)
+  - startTime (date)
+  - sling:resourceType (string) = 'cq/workflow/components/instance' mandatory autocreated
+  - modelId (string)
+  - modelVersion (string)
+  - endTime (date)
+  - * (undefined) multiple
+  + wait (nt:unstructured)
+  + metaData (nt:unstructured)
+  + workItems (nt:unstructured)
+  + workflowStack (nt:unstructured)
+  + data (cq:WorkflowData)
+  + history (nt:unstructured)
+  + orTab (nt:unstructured)
+
+[cq:WorkflowData]
+  - * (undefined) multiple
+  - * (undefined)
+  + payload (cq:Payload)
+  + metaData (nt:unstructured)
+
+[cq:WorkflowLauncher]
+  - description (string)
+  - * (undefined) multiple
+  - condition (string)
+  - eventType (long)
+  - * (undefined)
+  - workflow (string)
+  - nodetype (string)
+  - glob (string)
+
+[cq:WorkflowModel] > mix:versionable
+  orderable
+  - description (string)
+  - sling:resourceType (string) = 'cq/workflow/components/model' mandatory autocreated
+  - title (string)
+  + transitions (nt:unstructured)
+  + metaData (nt:unstructured)
+  + nodes (nt:unstructured)
+
+[cq:WorkflowNode]
+  orderable
+  - type (string)
+  - title (string)
+  - * (undefined) multiple
+  - maxIdleTime (long)
+  - description (string)
+  - * (undefined)
+  + timeoutConfiguration (nt:unstructured)
+  + metaData (nt:unstructured)
+
+[cq:WorkflowStack]
+  - nodeId (string)
+  - containeeInstanceId (string)
+  - parentInstanceId (string)
+
+[cq:WorkflowTransition]
+  orderable
+  - from (string)
+  - rule (string)
+  - to (string)
+  + metaData (nt:unstructured)
+
+[cq:containerList]
+  mixin
+
+[cq:mailerMessage]
+  mixin
+  - messageStatus (string) = 'new' mandatory autocreated
+
+[crxde:profile]
+  mixin
+  - crxde:versions (string) multiple
+  - crxde:paths (string) multiple
+  - crxde:os (string) multiple
+
+[vlt:FullCoverage]
+  mixin
+
+[vlt:HierarchyNode] > nt:hierarchyNode
+  mixin
+
+[vlt:Package]
+  orderable mixin
+  + vlt:definition (nt:base) = vlt:PackageDefinition
+
+[vlt:PackageDefinition] > nt:unstructured
+  orderable
+  - groupId (string)
+  - version (string)
+  - jcr:lastModifiedBy (string)
+  - lastUnpackedBy (string)
+  - dependencies (string) multiple
+  - jcr:createdBy (string)
+  - jcr:description (string)
+  - lastUnpacked (date)
+  - jcr:created (date)
+  - artifactId (string)
+  - jcr:lastModified (date)
+  + filter (nt:base) = nt:unstructured
+  + thumbnail (nt:base) = nt:unstructured
+
+[wiki:Properties]
+  - wiki:isGlobal (boolean)
+  - * (undefined)
+
+[wiki:Topic] > mix:lockable, mix:versionable, nt:hierarchyNode, nt:unstructured
+  orderable primaryitem wiki:text
+  - wiki:quietSave (boolean)
+  - wiki:topicTitle (string)
+  - wiki:logMessage (string)
+  - wiki:text (string) mandatory
+  - wiki:lastModified (date) mandatory
+  - wiki:topicName (string)
+  - wiki:lastModifiedBy (string) mandatory
+  - wiki:lockedBy (string)
+  + wiki:properties (wiki:Properties) = wiki:Properties
+  + * (wiki:Topic) version
+  + wiki:attachments (nt:folder) = nt:folder version
+
+[wiki:User]
+  mixin
+  - wiki:subscriptions (string) multiple
+
+[mix:created]
+  mixin
+  - jcr:createdBy (string) autocreated protected
+  - jcr:created (date) autocreated protected
+
+[mix:etag]
+  mixin
+  - jcr:etag (string) autocreated protected
+
+[mix:language]
+  mixin
+  - jcr:language (string)
+
+[mix:lastModified]
+  mixin
+  - jcr:lastModified (date) autocreated
+  - jcr:lastModifiedBy (string) autocreated
+
+[mix:lifecycle]
+  mixin
+  - jcr:lifecyclePolicy (reference) protected initialize
+  - jcr:currentLifecycleState (string) protected initialize
+
+[mix:lockable]
+  mixin
+  - jcr:lockIsDeep (boolean) protected ignore
+  - jcr:lockOwner (string) protected ignore
+
+[mix:mimeType]
+  mixin
+  - jcr:mimeType (string)
+  - jcr:encoding (string)
+
+[mix:referenceable]
+  mixin
+  - jcr:uuid (string) mandatory autocreated protected initialize
+
+[mix:shareable] > mix:referenceable
+  mixin
+
+[mix:simpleVersionable]
+  mixin
+  - jcr:isCheckedOut (boolean) = 'true' mandatory autocreated protected ignore
+
+[mix:title]
+  mixin
+  - jcr:description (string)
+  - jcr:title (string)
+
+[mix:versionable] > mix:referenceable, mix:simpleVersionable
+  mixin
+  - jcr:baseVersion (reference) mandatory protected ignore < 'nt:version'
+  - jcr:configuration (reference) protected ignore < 'nt:configuration'
+  - jcr:versionHistory (reference) mandatory protected ignore < 'nt:versionHistory'
+  - jcr:activity (reference) protected < 'nt:activity'
+  - jcr:mergeFailed (reference) protected multiple abort < 'nt:version'
+  - jcr:predecessors (reference) mandatory protected multiple ignore < 'nt:version'
+
+[nt:activity] > mix:referenceable
+  - jcr:activityTitle (string) mandatory autocreated protected
+
+[nt:address]
+  - jcr:path (path)
+  - jcr:port (string)
+  - jcr:id (weakreference)
+  - jcr:workspace (string)
+  - jcr:repository (string)
+  - jcr:protocol (string)
+  - jcr:host (string)
+
+[nt:base]
+  abstract
+  - jcr:mixinTypes (name) protected multiple compute
+  - jcr:primaryType (name) mandatory autocreated protected compute
+
+[nt:childNodeDefinition]
+  - jcr:sameNameSiblings (boolean) mandatory protected
+  - jcr:autoCreated (boolean) mandatory protected
+  - jcr:name (name) protected
+  - jcr:defaultPrimaryType (name) protected
+  - jcr:protected (boolean) mandatory protected
+  - jcr:mandatory (boolean) mandatory protected
+  - jcr:requiredPrimaryTypes (name) = 'nt:base' mandatory protected multiple
+  - jcr:onParentVersion (string) mandatory protected < 'COPY', 'VERSION', 'INITIALIZE', 'COMPUTE', 'IGNORE', 'ABORT'
+
+[nt:configuration] > mix:versionable
+  - jcr:root (reference) mandatory autocreated protected
+
+[nt:file] > nt:hierarchyNode
+  primaryitem jcr:content
+  + jcr:content (nt:base) mandatory
+
+[nt:folder] > nt:hierarchyNode
+  + * (nt:hierarchyNode) version
+
+[nt:frozenNode] > mix:referenceable
+  orderable
+  - jcr:frozenPrimaryType (name) mandatory autocreated protected abort
+  - * (undefined) protected abort
+  - jcr:frozenMixinTypes (name) protected multiple abort
+  - jcr:frozenUuid (string) mandatory autocreated protected abort
+  - * (undefined) protected multiple abort
+  + * (nt:base) protected multiple abort
+
+[nt:hierarchyNode] > mix:created
+  abstract
+
+[nt:linkedFile] > nt:hierarchyNode
+  primaryitem jcr:content
+  - jcr:content (reference) mandatory
+
+[nt:nodeType]
+  - jcr:isQueryable (boolean) mandatory protected
+  - jcr:nodeTypeName (name) mandatory protected
+  - jcr:supertypes (name) protected multiple
+  - jcr:primaryItemName (name) protected
+  - jcr:isMixin (boolean) mandatory protected
+  - jcr:hasOrderableChildNodes (boolean) mandatory protected
+  - jcr:isAbstract (boolean) mandatory protected
+  + jcr:propertyDefinition (nt:propertyDefinition) = nt:propertyDefinition protected multiple
+  + jcr:childNodeDefinition (nt:childNodeDefinition) = nt:childNodeDefinition protected multiple
+
+[nt:propertyDefinition]
+  - jcr:mandatory (boolean) mandatory protected
+  - jcr:defaultValues (undefined) protected multiple
+  - jcr:requiredType (string) mandatory protected < 'STRING', 'URI', 'BINARY', 'LONG', 'DOUBLE', 'DECIMAL', 'BOOLEAN', 'DATE', 'NAME', 'PATH', 'REFERENCE', 'WEAKREFERENCE', 'UNDEFINED'
+  - jcr:autoCreated (boolean) mandatory protected
+  - jcr:protected (boolean) mandatory protected
+  - jcr:onParentVersion (string) mandatory protected < 'COPY', 'VERSION', 'INITIALIZE', 'COMPUTE', 'IGNORE', 'ABORT'
+  - jcr:isQueryOrderable (boolean) mandatory protected
+  - jcr:availableQueryOperators (name) mandatory protected multiple
+  - jcr:name (name) protected
+  - jcr:isFullTextSearchable (boolean) mandatory protected
+  - jcr:valueConstraints (string) protected multiple
+  - jcr:multiple (boolean) mandatory protected
+
+[nt:query]
+  - jcr:language (string)
+  - jcr:statement (string)
+
+[nt:resource] > mix:lastModified, mix:mimeType, mix:referenceable
+  primaryitem jcr:data
+  - jcr:data (binary) mandatory
+
+[nt:unstructured]
+  orderable
+  - * (undefined) multiple
+  - * (undefined)
+  + * (nt:base) = nt:unstructured multiple version
+
+[nt:version] > mix:referenceable
+  - jcr:predecessors (reference) protected multiple abort < 'nt:version'
+  - jcr:activity (reference) protected abort < 'nt:activity'
+  - jcr:successors (reference) protected multiple abort < 'nt:version'
+  - jcr:created (date) mandatory autocreated protected abort
+  + jcr:frozenNode (nt:frozenNode) protected abort
+
+[nt:versionHistory] > mix:referenceable
+  - jcr:copiedFrom (weakreference) protected abort < 'nt:version'
+  - jcr:versionableUuid (string) mandatory autocreated protected abort
+  + * (nt:version) = nt:version protected abort
+  + jcr:rootVersion (nt:version) = nt:version mandatory autocreated protected abort
+  + jcr:versionLabels (nt:versionLabels) = nt:versionLabels mandatory autocreated protected abort
+
+[nt:versionLabels]
+  - * (reference) protected abort < 'nt:version'
+
+[nt:versionedChild]
+  - jcr:childVersionHistory (reference) mandatory autocreated protected abort < 'nt:versionHistory'
+
+[nt:xmlCharacterData] > nt:xmlNode
+  orderable
+  - jcr:xmlcharacters (string)
+
+[nt:xmlDocument] > nt:xmlNode
+  orderable
+  + * (nt:xmlElement) = nt:xmlElement version
+  + jcr:xmlcomment (nt:xmlCharacterData) = nt:xmlCharacterData multiple version
+  + * (nt:xmlProcessingInstruction) = nt:xmlProcessingInstruction multiple version
+
+[nt:xmlElement] > nt:xmlNode
+  orderable
+  - * (string)
+  + jcr:xmlcdata (nt:xmlCharacterData) = nt:xmlCharacterData multiple version
+  + jcr:xmlcomment (nt:xmlCharacterData) = nt:xmlCharacterData multiple version
+  + * (nt:xmlElement) = nt:xmlElement multiple version
+  + jcr:xmltext (nt:xmlCharacterData) = nt:xmlCharacterData multiple version
+  + * (nt:xmlProcessingInstruction) = nt:xmlProcessingInstruction multiple version
+
+[nt:xmlNode]
+  orderable
+
+[nt:xmlProcessingInstruction] > nt:xmlNode
+  orderable
+  - jcr:xmlcharacters (string)
+
+[crxdao:Tracked]
+  mixin
+  + crxdao:meta (nt:base) = nt:unstructured
+
+[sni:BulkUpdate] > nt:hierarchyNode
+  - paths (string) mandatory multiple
+  + updates (nt:base) = nt:unstructured
+
+[wci:Tracked]
+  mixin
+  + wci:meta (nt:base) = nt:unstructured mandatory
+
+[rdf:Alt] > xmp:Simple
+  orderable
+  + * (xmp:Property)
+
+[rdf:Bag] > xmp:Simple
+  orderable
+  + * (xmp:Property)
+
+[rdf:Seq] > xmp:Simple
+  orderable
+  + * (xmp:Property)
+
+[rep:ACE]
+  - rep:nodePath (path) protected
+  - rep:principalName (string) mandatory protected
+  - * (undefined) protected
+  - rep:privileges (name) mandatory protected multiple
+  - rep:glob (string) protected
+
+[rep:ACL] > rep:Policy
+  orderable
+  + * (rep:ACE) = rep:GrantACE protected ignore
+
+[rep:AccessControl]
+  + * (rep:AccessControl) protected ignore
+  + * (rep:PrincipalAccessControl) protected ignore
+
+[rep:AccessControllable]
+  mixin
+  + rep:policy (rep:Policy) protected ignore
+
+[rep:Activities]
+  + * (rep:Activities) = rep:Activities protected abort
+  + * (nt:activity) = nt:activity protected abort
+
+[rep:Authorizable] > mix:referenceable, nt:hierarchyNode
+  abstract
+  - * (undefined)
+  - * (undefined) multiple
+  - rep:principalName (string) mandatory protected
+  + * (nt:base) = nt:unstructured version
+
+[rep:AuthorizableFolder] > nt:hierarchyNode
+  + * (rep:AuthorizableFolder) = rep:AuthorizableFolder version
+  + * (rep:Authorizable) = rep:User version
+
+[rep:Configurations]
+  + * (rep:Configurations) = rep:Configurations abort
+  + * (nt:configuration) = nt:configuration abort
+
+[rep:DenyACE] > rep:ACE
+
+[rep:GrantACE] > rep:ACE
+
+[rep:Group] > rep:Authorizable
+  - rep:members (weakreference) protected multiple < 'rep:Authorizable'
+  + rep:members (rep:Members) = rep:Members protected multiple version
+
+[rep:Impersonatable]
+  mixin
+  - rep:impersonators (string) protected multiple
+
+[rep:Members]
+  orderable
+  - * (weakreference) protected < 'rep:Authorizable'
+  + * (rep:Members) = rep:Members protected multiple
+
+[rep:Policy]
+  abstract
+
+[rep:PrincipalAccessControl] > rep:AccessControl
+  + rep:policy (rep:Policy) protected ignore
+
+[rep:RepoAccessControllable]
+  mixin
+  + rep:repoPolicy (rep:Policy) protected ignore
+
+[rep:RetentionManageable]
+  mixin
+  - rep:hold (undefined) protected multiple ignore
+  - rep:retentionPolicy (undefined) protected ignore
+
+[rep:User] > rep:Authorizable, rep:Impersonatable
+  - rep:password (string) mandatory protected
+  - rep:disabled (string) protected
+
+[rep:VersionReference]
+  mixin
+  - rep:versions (reference) protected multiple
+
+[rep:nodeTypes]
+  + * (nt:nodeType) = nt:nodeType protected abort
+
+[rep:root] > nt:unstructured
+  orderable
+  + jcr:system (rep:system) = rep:system mandatory ignore
+
+[rep:system]
+  orderable
+  + jcr:configurations (rep:Configurations) = rep:Configurations protected abort
+  + jcr:versionStorage (rep:versionStorage) = rep:versionStorage mandatory protected abort
+  + jcr:activities (rep:Activities) = rep:Activities mandatory protected abort
+  + jcr:nodeTypes (rep:nodeTypes) = rep:nodeTypes mandatory protected abort
+  + * (nt:base) = nt:base ignore
+
+[rep:versionStorage]
+  + * (nt:versionHistory) = nt:versionHistory protected abort
+  + * (rep:versionStorage) = rep:versionStorage protected abort
+

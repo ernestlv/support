@@ -1,0 +1,43 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "servicename": "PhotoGalleryEndCap",
+    "querystring": "PHOTOGALLERY6046463",
+    "AssetUsage": {
+      "AssetList": {
+        "Asset": [
+          {
+            "AssetId": "PHOTOGALLERY6045652",
+            "AssetTitle": "Alton Brown's Best Recipes",
+            "AssetUrl": "/recipes/alton-browns-best-recipes/pictures/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/06/06/EA1E10_Baked-Macaraoni-and-Cheese_s4x3_lead.jpg",
+            "AssetDesc": "Try Alton Brown's best recipes from \"Good Eats,\" including mac and cheese, meatloaf and chocolate chip cookies.",
+            "AssetInfo": "10",
+            "RecordType": "PHOTOGALLERY",
+            "moduleNum": "1"
+          },
+          {
+            "AssetId": "PHOTOGALLERY6046913",
+            "AssetTitle": "All-Star Holiday Cookie Recipes",
+            "AssetUrl": "/recipes/all-star-holiday-cookie-recipes/pictures/index.html",
+            "ImageUrl": "http://cooktv.sndimg.com/COOK/2011/11/09/CC_Nadia-G-Candied-Bacon-and-Dark-Chocolate-Chunk-Cookies-1_s4x3_sm.jpg",
+            "AssetDesc": "Your favorite Cooking Channel chefs and personalities share their best holiday cookie recipes. Get them and delight your friends and fa...",
+            "AssetInfo": "15",
+            "RecordType": "PHOTOGALLERY",
+            "moduleNum": "2"
+          },
+          {
+            "AssetId": "PHOTOGALLERY6046911",
+            "AssetTitle": "Celebrity Holiday Cookie Recipes",
+            "AssetUrl": "/recipes/celebrity-holiday-cookie-recipes/pictures/index.html",
+            "ImageUrl": "http://cooktv.sndimg.com/COOK/2011/11/10/CC_Michelle-Obama-Chef-Yosses_s4x3_sm.jpg",
+            "AssetDesc": "Get delicious holiday cookie recipes from your favorite celebrities such as Linda Evans, Michelle Branch, and even Cookie Monster himse...",
+            "AssetInfo": "18",
+            "RecordType": "PHOTOGALLERY",
+            "moduleNum": "3"
+          }
+        ]
+      }
+    }
+  }
+}

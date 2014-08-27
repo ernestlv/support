@@ -1,0 +1,116 @@
+{
+  "ServiceResponse": {
+    "baseurl": "http://www.cookingchanneltv.com",
+    "servicename": "WeRecommend",
+    "querystring": "VIDEO64057",
+    "AssetUsage": {
+      "AssetList": {
+        "Asset": [
+          {
+            "AssetId": "RECIPE567440",
+            "AssetTitle": "Dried Cherry, Macadamia and White Chocolate Chip Cookies",
+            "AssetUrl": "/recipes/dried-cherry-macadamia-and-white-chocolate-chip-cookies-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/08/16/cc_cherry-macadamia-white-chocolate-chip-cookies-recipe_s4x3_lead.jpg",
+            "AssetDesc": "These cookies develop a lot of flavor from chilling the dough for a longer about of time. This is the secret to amazingly flavorful dou...",
+            "RecordType": "RECIPE",
+            "moduleNum": "1",
+            "RecipeTotalTime": "37 hrs 45 mins",
+            "RecipeLevel": "--"
+          },
+          {
+            "AssetId": "RECIPE460642",
+            "AssetTitle": "Chocolate-Hazelnut Smooches: Baci D'Alassio",
+            "AssetUrl": "/recipes/chocolate-hazelnut-smooches-baci-dalassio-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2004/02/09/ei1c02_chocolate_hazelnut_kisses_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "2",
+            "RecipeTotalTime": "13 hrs 45 mins",
+            "RecipeLevel": "Intermediate"
+          },
+          {
+            "AssetId": "RECIPE461136",
+            "AssetTitle": "Holiday Cookies: One Dough, Three Holiday Cookies",
+            "AssetUrl": "/recipes/dave-lieberman/holiday-cookies-one-dough-three-holiday-cookies-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/11/10/FN_028-One-Dough-Three-Holiday-Cookies_s4x3_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "3",
+            "RecipeTotalTime": "2 hrs 37 mins",
+            "RecipeLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE470471",
+            "AssetTitle": "Chocolate Chunk Cookies with Pine Nuts",
+            "AssetUrl": "/recipes/giada-de-laurentiis/chocolate-chunk-cookies-with-pine-nuts-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2007/05/11/ei1010_cookies_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "4",
+            "RecipeTotalTime": "43 mins",
+            "RecipeLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE596452",
+            "AssetTitle": "Cream Cheese Brownies",
+            "AssetUrl": "/recipes/cream-cheese-brownies-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/12/08/CCB_Kids-Cookies-Cream-Cheese-Brownies_s3x4_sm.jpg",
+            "AssetDesc": "The combination of the creamy smooth cheese and the rich brownies is absolutely scrumptious.",
+            "RecordType": "RECIPE",
+            "moduleNum": "5",
+            "RecipeTotalTime": "--",
+            "RecipeLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE468738",
+            "AssetTitle": "Gorilla Ice Cream Sandwiches",
+            "AssetUrl": "/recipes/chuck-hughes/gorilla-ice-cream-sandwiches-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/05/03/CC_Gorilla-Ice-Cream-Sandwiches_s4x3_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "6",
+            "RecipeTotalTime": "25 hrs 10 mins",
+            "RecipeLevel": "Intermediate"
+          },
+          {
+            "AssetId": "RECIPE585406",
+            "AssetTitle": "Rugelach",
+            "AssetUrl": "/recipes/rugelach-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2011/11/09/CC_Zoe-Francois-Rugelach_s4x3_sm.jpg",
+            "AssetDesc": "Rugelach are a traditional Jewish cookie, eaten for special holidays or any other occasion. The dough is soft and tender, with just a s...",
+            "RecordType": "RECIPE",
+            "moduleNum": "7",
+            "RecipeTotalTime": "3 hrs",
+            "RecipeLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE482074",
+            "AssetTitle": "Blue Ribbon Almond Roca Cookies",
+            "AssetUrl": "/recipes/blue-ribbon-almond-roca-cookies-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2009/01/05/EM0228_Almond-Rocca-Cookies_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "8",
+            "RecipeTotalTime": "52 mins",
+            "RecipeLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE582437",
+            "AssetTitle": "Chocolate Almond Apricot Brittle",
+            "AssetUrl": "/recipes/giada-de-laurentiis/chocolate-almond-apricot-brittle-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2006/10/20/ei0907_brittle1_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "9",
+            "RecipeTotalTime": "2 hrs 40 mins",
+            "RecipeLevel": "Easy"
+          },
+          {
+            "AssetId": "RECIPE468842",
+            "AssetTitle": "Basic Cookie Recipe",
+            "AssetUrl": "/recipes/rachel-allen/basic-cookie-recipe-recipe/index.html",
+            "ImageUrl": "http://img.foodnetwork.com/FOOD/2010/06/09/CCRAB102_basic-cookie_s4x3_sm.jpg",
+            "RecordType": "RECIPE",
+            "moduleNum": "10",
+            "RecipeTotalTime": "45 mins",
+            "RecipeLevel": "Easy"
+          }
+        ]
+      }
+    }
+  }
+}

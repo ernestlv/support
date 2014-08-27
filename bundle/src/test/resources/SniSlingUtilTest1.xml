@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr_root jcr:primaryType="nt:unstructured"
+           xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:fn_old="http://www.w3.org/2004/10/xpath-functions"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+           xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:sv="http://www.jcp.org/jcr/sv/1.0"
+           xmlns:rep="internal" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+           xmlns:cq="http://www.day.com/jcr/cq/1.0"
+           xmlns:crxdao="http://www.scrippsnetworks.com/crxdao/ns/1.0/"
+           xmlns:sni="http://www.scrippsnetworks.com/ns/1.0/"
+           xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+        >
+    <lib jcr:primaryType="nt:unstructured"></lib>
+    <apps jcr:primaryType="nt:unstructured">
+        <sni-food jcr:primaryType="nt:unstructured">
+
+        </sni-food>
+    </apps>
+    <content jcr:primaryType="nt:unstructured">
+        <food jcr:primaryType="nt:unstructured">
+            <test-page jcr:primaryType="cq:Page">
+                <jcr:content
+                        jcr:primaryType="cq:PageContent"
+                        jcr:title="Sample Article"
+                        sling:resourceType="sni-food/article-simple"
+                        cq:lastReplicationAction="Activate"
+                        sni:assetType="ARTICLE"
+                        sni:brand="FOOD"
+                        sni:firstLetter="A"
+                        sni:sortTitle="SAMPLE ARTICLE">
+                </jcr:content>
+            </test-page>
+        </food>
+    </content>
+</jcr_root>

@@ -1,0 +1,12 @@
+syntax:glob
+runner/*
+target/*
+.svn
+*.vlt
+*.iml
+*.idea
+.classpath
+.project
+.settings
+__history
+*.orig
